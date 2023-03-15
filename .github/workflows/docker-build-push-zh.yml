@@ -74,3 +74,4 @@ jobs:
         uses: docker/bake-action@v2.3.0
         with:
           push: true
+          tags: goodhawk/erpnext:V14.18.3

@@ -1,39 +1,39 @@
 #!/bin/bash
-# v0.3 2022.09.23   Ìí¼Ó¹ÜÀíÔ±ÕËºÅÃÜÂëÌáÊ¾¡£
+# v0.3 2022.09.23   æ·»åŠ ç®¡ç†å‘˜è´¦å·å¯†ç æç¤ºã€‚
 set -e
-# ½Å±¾ÔËĞĞ»·¾³¼ì²é
-# ¼ì²âÊÇ·ñubuntu22.04
+# è„šæœ¬è¿è¡Œç¯å¢ƒæ£€æŸ¥
+# æ£€æµ‹æ˜¯å¦ubuntu22.04
 cat /etc/os-release
 osVer=$(cat /etc/os-release | grep 'Ubuntu 22.04' || true)
 if [[ ${osVer} == '' ]]; then
-    echo '½Å±¾Ö»ÔÚubuntu22.04°æ±¾²âÊÔÍ¨¹ı¡£ÆäËüÏµÍ³°æ±¾ĞèÒªÖØĞÂÊÊÅä¡£ÍË³ö°²×°¡£'
+    echo 'è„šæœ¬åªåœ¨ubuntu22.04ç‰ˆæœ¬æµ‹è¯•é€šè¿‡ã€‚å…¶å®ƒç³»ç»Ÿç‰ˆæœ¬éœ€è¦é‡æ–°é€‚é…ã€‚é€€å‡ºå®‰è£…ã€‚'
     exit 1
 else
-    echo 'ÏµÍ³°æ±¾¼ì²âÍ¨¹ı...'
+    echo 'ç³»ç»Ÿç‰ˆæœ¬æ£€æµ‹é€šè¿‡...'
 fi
-# ¼ì²âÊÇ·ñÊ¹ÓÃbashÖ´ĞĞ
+# æ£€æµ‹æ˜¯å¦ä½¿ç”¨bashæ‰§è¡Œ
 if [[ 1 == 1 ]]; then
-    echo 'bash¼ì²âÍ¨¹ı...'
+    echo 'bashæ£€æµ‹é€šè¿‡...'
 else
-    echo 'bash¼ì²âÎ´Í¨¹ı...'
-    echo '½Å±¾ĞèÒªÊ¹ÓÃbashÖ´ĞĞ¡£'
+    echo 'bashæ£€æµ‹æœªé€šè¿‡...'
+    echo 'è„šæœ¬éœ€è¦ä½¿ç”¨bashæ‰§è¡Œã€‚'
     exit 1
 fi
-# ¼ì²âÊÇ·ñÊ¹ÓÃrootÓÃ»§Ö´ĞĞ
+# æ£€æµ‹æ˜¯å¦ä½¿ç”¨rootç”¨æˆ·æ‰§è¡Œ
 if [ "$(id -u)" != "0" ]; then
-   echo "½Å±¾ĞèÒªÊ¹ÓÃrootÓÃ»§Ö´ĞĞ"
+   echo "è„šæœ¬éœ€è¦ä½¿ç”¨rootç”¨æˆ·æ‰§è¡Œ"
    exit 1
 else
-    echo 'Ö´ĞĞÓÃ»§¼ì²âÍ¨¹ı...'
+    echo 'æ‰§è¡Œç”¨æˆ·æ£€æµ‹é€šè¿‡...'
 fi
-# Éè¶¨²ÎÊıÄ¬ÈÏÖµ£¬Èç¹ûÄã²»ÖªµÀ¸ÉÂïµÄ¾Í±ğ¸Ä¡£
-# Ö»ÊÊÓÃÓÚ´¿¾»°æubuntu22.04²¢Ê¹ÓÃrootÓÃ»§ÔËĞĞ£¬ÆäËûÏµÍ³Çë×ÔĞĞÖØĞÂÊÊÅä¡£
-# »á°²×°python3.10£¬mariadb£¬redisÒÔ¼°erpnextµÄÆäËûÏµÍ³ĞèÇó¡£
-# ×Ô¶¨ÒåÑ¡ÏîÊ¹ÓÃ·½·¨Àı£º./install.erpnext.sh benchVersion=5.12.1 frappePath=https://gitee.com/mirrors/frappe branch=version-14-beta
-# -qÆôÓÃ¾²Ä¬Ä£Ê½£¬-dÊÊÅädocker ubuntu22.04¾µÏñÄÚ°²×°¡£
-# ¾²Ä¬Ä£Ê½»áÄ¬ÈÏÉ¾³ıÒÑ´æÔÚµÄ°²×°Ä¿Â¼ºÍµ±Ç°ÉèÖÃÕ¾µãÖØÃûµÄÊı¾İ¿â¼°ÓÃ»§¡£Çë½÷É÷Ê¹ÓÃ¡£
-# branch²ÎÊı»áÍ¬Ê±ĞŞ¸ÄfrappeºÍerpnextµÄ·ÖÖ§¡£
-# Ò²¿ÉÒÔÖ±½ÓĞŞ¸ÄÏÂÁĞ±äÁ¿
+# è®¾å®šå‚æ•°é»˜è®¤å€¼ï¼Œå¦‚æœä½ ä¸çŸ¥é“å¹²å˜›çš„å°±åˆ«æ”¹ã€‚
+# åªé€‚ç”¨äºçº¯å‡€ç‰ˆubuntu22.04å¹¶ä½¿ç”¨rootç”¨æˆ·è¿è¡Œï¼Œå…¶ä»–ç³»ç»Ÿè¯·è‡ªè¡Œé‡æ–°é€‚é…ã€‚
+# ä¼šå®‰è£…python3.10ï¼Œmariadbï¼Œredisä»¥åŠerpnextçš„å…¶ä»–ç³»ç»Ÿéœ€æ±‚ã€‚
+# è‡ªå®šä¹‰é€‰é¡¹ä½¿ç”¨æ–¹æ³•ä¾‹ï¼š./install.erpnext.sh benchVersion=5.12.1 frappePath=https://gitee.com/mirrors/frappe branch=version-14-beta
+# -qå¯ç”¨é™é»˜æ¨¡å¼ï¼Œ-dé€‚é…docker ubuntu22.04é•œåƒå†…å®‰è£…ã€‚
+# é™é»˜æ¨¡å¼ä¼šé»˜è®¤åˆ é™¤å·²å­˜åœ¨çš„å®‰è£…ç›®å½•å’Œå½“å‰è®¾ç½®ç«™ç‚¹é‡åçš„æ•°æ®åº“åŠç”¨æˆ·ã€‚è¯·è°¨æ…ä½¿ç”¨ã€‚
+# branchå‚æ•°ä¼šåŒæ—¶ä¿®æ”¹frappeå’Œerpnextçš„åˆ†æ”¯ã€‚
+# ä¹Ÿå¯ä»¥ç›´æ¥ä¿®æ”¹ä¸‹åˆ—å˜é‡
 mariadbPath=""
 mariadbPort="3306"
 mariadbRootPassword="Pass1234"
@@ -49,15 +49,15 @@ siteName="site1.local"
 siteDbPassword="Pass1234"
 webPort=""
 productionMode="yes"
-# ÊÇ·ñĞŞ¸Äapt°²×°Ô´£¬Èç¹ûÊÇÔÆ·şÎñÆ÷½¨Òé²»ĞŞ¸Ä¡£
+# æ˜¯å¦ä¿®æ”¹aptå®‰è£…æºï¼Œå¦‚æœæ˜¯äº‘æœåŠ¡å™¨å»ºè®®ä¸ä¿®æ”¹ã€‚
 altAptSources="yes"
-# ÊÇ·ñÌø¹ıÈ·ÈÏ²ÎÊıÖ±½Ó°²×°
+# æ˜¯å¦è·³è¿‡ç¡®è®¤å‚æ•°ç›´æ¥å®‰è£…
 quiet="no"
-# ÊÇ·ñÎªdocker¾µÏñ
+# æ˜¯å¦ä¸ºdockeré•œåƒ
 inDocker="no"
-# ÊÇ·ñÉ¾³ıÖØ¸´ÎÄ¼ş
+# æ˜¯å¦åˆ é™¤é‡å¤æ–‡ä»¶
 removeDuplicate="yes"
-# ¼ì²âÈç¹ûÊÇÔÆÖ÷»ú»òÒÑ¾­ÊÇ¹úÄÚÔ´Ôò²»ĞŞ¸Äapt°²×°Ô´
+# æ£€æµ‹å¦‚æœæ˜¯äº‘ä¸»æœºæˆ–å·²ç»æ˜¯å›½å†…æºåˆ™ä¸ä¿®æ”¹aptå®‰è£…æº
 hostAddress=("mirrors.tencentyun.com" "mirrors.tuna.tsinghua.edu.cn" "cn.archive.ubuntu.com")
 for h in ${hostAddress[@]}; do
     n=$(cat /etc/apt/sources.list | grep -c ${h} || true)
@@ -65,9 +65,9 @@ for h in ${hostAddress[@]}; do
         altAptSources="no"
     fi
 done
-# ±éÀú²ÎÊıĞŞ¸ÄÄ¬ÈÏÖµ
-# ½Å±¾ºóÌí¼Ó²ÎÊıÈçÓĞ³åÍ»£¬¿¿ºóµÄ²ÎÊıÉúĞ§¡£
-echo "===================»ñÈ¡²ÎÊı==================="
+# éå†å‚æ•°ä¿®æ”¹é»˜è®¤å€¼
+# è„šæœ¬åæ·»åŠ å‚æ•°å¦‚æœ‰å†²çªï¼Œé åçš„å‚æ•°ç”Ÿæ•ˆã€‚
+echo "===================è·å–å‚æ•°==================="
 argTag=""
 for arg in $*
 do
@@ -77,11 +77,11 @@ do
             t=$(echo ${arg}|sed 's/[0-9]//g')
             if [[ (${t} == "") && (${arg} -ge 80) && (${arg} -lt 65535) ]]; then
                 webPort=${arg}
-                echo "Éè¶¨web¶Ë¿ÚÎª${webPort}¡£"
-                # Ö»ÓĞÊÕµ½ÕıÈ·µÄ¶Ë¿Ú²ÎÊı²ÅÌø×ªÏÂÒ»¸ö²ÎÊı£¬·ñÔò½«¼ÌĞøÊ¶±ğµ±Ç°²ÎÊı¡£
+                echo "è®¾å®šwebç«¯å£ä¸º${webPort}ã€‚"
+                # åªæœ‰æ”¶åˆ°æ­£ç¡®çš„ç«¯å£å‚æ•°æ‰è·³è½¬ä¸‹ä¸€ä¸ªå‚æ•°ï¼Œå¦åˆ™å°†ç»§ç»­è¯†åˆ«å½“å‰å‚æ•°ã€‚
                 continue
             else
-                # Ö»ÓĞ-pÃ»ÓĞÕıÈ·µÄ²ÎÊı»á½«webPort²ÎÊıÖÃ¿Õ
+                # åªæœ‰-pæ²¡æœ‰æ­£ç¡®çš„å‚æ•°ä¼šå°†webPortå‚æ•°ç½®ç©º
                 webPort=""
             fi
             ;;
@@ -97,136 +97,136 @@ do
             "q")
                 quiet='yes'
                 removeDuplicate="yes"
-                echo "²»ÔÙÈ·ÈÏ²ÎÊı£¬Ö±½Ó°²×°¡£"
+                echo "ä¸å†ç¡®è®¤å‚æ•°ï¼Œç›´æ¥å®‰è£…ã€‚"
                 ;;
             "d")
                 inDocker='yes'
-                echo "Õë¶Ôdocker¾µÏñ°²×°·½Ê½ÊÊÅä¡£"
+                echo "é’ˆå¯¹dockeré•œåƒå®‰è£…æ–¹å¼é€‚é…ã€‚"
                 ;;
             "p")
                 argTag='webPort'
-                echo "Õë¶Ôdocker¾µÏñ°²×°·½Ê½ÊÊÅä¡£"
+                echo "é’ˆå¯¹dockeré•œåƒå®‰è£…æ–¹å¼é€‚é…ã€‚"
                 ;;
             esac
         done
     elif [[ ${arg} == *=* ]];then
         arg0=${arg%=*}
         arg1=${arg#*=}
-        echo "${arg0} Îª£º ${arg1}"
+        echo "${arg0} ä¸ºï¼š ${arg1}"
         case "${arg0}" in
         "benchVersion")
             benchVersion=${arg1}
-            echo "ÉèÖÃbench°æ±¾Îª£º ${benchVersion}"
+            echo "è®¾ç½®benchç‰ˆæœ¬ä¸ºï¼š ${benchVersion}"
             ;;
         "mariadbRootPassword")
             mariadbRootPassword=${arg1}
-            echo "ÉèÖÃÊı¾İ¿â¸ùÃÜÂëÎª£º ${mariadbRootPassword}"
+            echo "è®¾ç½®æ•°æ®åº“æ ¹å¯†ç ä¸ºï¼š ${mariadbRootPassword}"
             ;;
         "adminPassword")
             adminPassword=${arg1}
-            echo "ÉèÖÃ¹ÜÀíÔ±ÃÜÂëÎª£º ${adminPassword}"
+            echo "è®¾ç½®ç®¡ç†å‘˜å¯†ç ä¸ºï¼š ${adminPassword}"
             ;;
         "frappePath")
             frappePath=${arg1}
-            echo "ÉèÖÃfrappeÀ­È¡µØÖ·Îª£º ${frappePath}"
+            echo "è®¾ç½®frappeæ‹‰å–åœ°å€ä¸ºï¼š ${frappePath}"
             ;;
         "frappeBranch")
             frappeBranch=${arg1}
-            echo "ÉèÖÃfrappe·ÖÖ§Îª£º ${frappeBranch}"
+            echo "è®¾ç½®frappeåˆ†æ”¯ä¸ºï¼š ${frappeBranch}"
             ;;
         "erpnextPath")
             erpnextPath=${arg1}
-            echo "ÉèÖÃerpnextÀ­È¡µØÖ·Îª£º ${erpnextPath}"
+            echo "è®¾ç½®erpnextæ‹‰å–åœ°å€ä¸ºï¼š ${erpnextPath}"
             ;;
         "erpnextBranch")
             erpnextBranch=${arg1}
-            echo "ÉèÖÃerpnext·ÖÖ§Îª£º ${erpnextBranch}"
+            echo "è®¾ç½®erpnextåˆ†æ”¯ä¸ºï¼š ${erpnextBranch}"
             ;;
         "branch")
             frappeBranch=${arg1}
             erpnextBranch=${arg1}
-            echo "ÉèÖÃfrappe·ÖÖ§Îª£º ${frappeBranch}"
-            echo "ÉèÖÃerpnext·ÖÖ§Îª£º ${erpnextBranch}"
+            echo "è®¾ç½®frappeåˆ†æ”¯ä¸ºï¼š ${frappeBranch}"
+            echo "è®¾ç½®erpnextåˆ†æ”¯ä¸ºï¼š ${erpnextBranch}"
             ;;
         "siteName")
             siteName=${arg1}
-            echo "ÉèÖÃÕ¾µãÃû³ÆÎª£º ${siteName}"
+            echo "è®¾ç½®ç«™ç‚¹åç§°ä¸ºï¼š ${siteName}"
             ;;
         "installDir")
             installDir=${arg1}
-            echo "ÉèÖÃ°²×°Ä¿Â¼Îª£º ${installDir}"
+            echo "è®¾ç½®å®‰è£…ç›®å½•ä¸ºï¼š ${installDir}"
             ;;
         "userName")
             userName=${arg1}
-            echo "ÉèÖÃ°²×°ÓÃ»§Îª£º ${userName}"
+            echo "è®¾ç½®å®‰è£…ç”¨æˆ·ä¸ºï¼š ${userName}"
             ;;
         "siteDbPassword")
             siteDbPassword=${arg1}
-            echo "ÉèÖÃÕ¾µãÊı¾İ¿âÃÜÂëÎª£º ${siteDbPassword}"
+            echo "è®¾ç½®ç«™ç‚¹æ•°æ®åº“å¯†ç ä¸ºï¼š ${siteDbPassword}"
             ;;
         "webPort")
             webPort=${arg1}
-            echo "ÉèÖÃweb¶Ë¿ÚÎª£º ${webPort}"
+            echo "è®¾ç½®webç«¯å£ä¸ºï¼š ${webPort}"
             ;;
         "altAptSources")
             altAptSources=${arg1}
-            echo "ÊÇ·ñĞŞ¸Äapt°²×°Ô´£º${altAptSources}£¬ÔÆ·şÎñÆ÷ÓĞ×Ô¼ºµÄ°²×°£¬½¨Òé²»ĞŞ¸Ä¡£"
+            echo "æ˜¯å¦ä¿®æ”¹aptå®‰è£…æºï¼š${altAptSources}ï¼Œäº‘æœåŠ¡å™¨æœ‰è‡ªå·±çš„å®‰è£…ï¼Œå»ºè®®ä¸ä¿®æ”¹ã€‚"
             ;;
         "quiet")
             quiet=${arg1}
             if [[ ${quiet} == "yes" ]];then
                 removeDuplicate="yes"
             fi
-            echo "²»ÔÙÈ·ÈÏ²ÎÊı£¬Ö±½Ó°²×°¡£"
+            echo "ä¸å†ç¡®è®¤å‚æ•°ï¼Œç›´æ¥å®‰è£…ã€‚"
             ;;
         "inDocker")
             inDocker=${arg1}
-            echo "Õë¶Ôdocker¾µÏñ°²×°·½Ê½ÊÊÅä¡£"
+            echo "é’ˆå¯¹dockeré•œåƒå®‰è£…æ–¹å¼é€‚é…ã€‚"
             ;;
         "productionMode")
             productionMode=${arg1}
-            echo "ÊÇ·ñ¿ªÆôÉú²úÄ£Ê½£º ${productionMode}"
+            echo "æ˜¯å¦å¼€å¯ç”Ÿäº§æ¨¡å¼ï¼š ${productionMode}"
             ;;
         esac
     fi
 done
-# ÏÔÊ¾²ÎÊı
+# æ˜¾ç¤ºå‚æ•°
 if [[ ${quiet} != "yes" && ${inDocker} != "yes" ]]; then
     clear
 fi
-echo "Êı¾İ¿âµØÖ·£º"${mariadbPath}
-echo "Êı¾İ¿â¶Ë¿Ú£º"${mariadbPort}
-echo "Êı¾İ¿ârootÓÃ»§ÃÜÂë£º"${mariadbRootPassword}
-echo "¹ÜÀíÔ±ÃÜÂë£º"${adminPassword}
-echo "°²×°Ä¿Â¼£º"${installDir}
-echo "Ö¸¶¨bench°æ±¾£º"${benchVersion}
-echo "À­È¡frappeµØÖ·£º"${frappePath}
-echo "Ö¸¶¨frappe°æ±¾£º"${frappeBranch}
-echo "À­È¡erpnextµØÖ·£º"${erpnextPath}
-echo "Ö¸¶¨erpnext°æ±¾£º"${erpnextBranch}
-echo "ÍøÕ¾Ãû³Æ£º"${siteName}
-echo "ÍøÕ¾Êı¾İ¿âÃÜÂë£º"${siteDbPassword}
-echo "web¶Ë¿Ú£º"${webPort}
-echo "ÊÇ·ñĞŞ¸Äapt°²×°Ô´£º"${altAptSources}
-echo "ÊÇ·ñ¾²Ä¬Ä£Ê½°²×°£º"${quiet}
-echo "ÈçÓĞÖØÃûÄ¿Â¼»òÊı¾İ¿âÊÇ·ñÉ¾³ı£º"${removeDuplicate}
-echo "ÊÇ·ñÎªdocker¾µÏñÄÚ°²×°ÊÊÅä£º"${inDocker}
-echo "ÊÇ·ñ¿ªÆôÉú²úÄ£Ê½£º"${productionMode}
-# µÈ´ıÈ·ÈÏ²ÎÊı
+echo "æ•°æ®åº“åœ°å€ï¼š"${mariadbPath}
+echo "æ•°æ®åº“ç«¯å£ï¼š"${mariadbPort}
+echo "æ•°æ®åº“rootç”¨æˆ·å¯†ç ï¼š"${mariadbRootPassword}
+echo "ç®¡ç†å‘˜å¯†ç ï¼š"${adminPassword}
+echo "å®‰è£…ç›®å½•ï¼š"${installDir}
+echo "æŒ‡å®šbenchç‰ˆæœ¬ï¼š"${benchVersion}
+echo "æ‹‰å–frappeåœ°å€ï¼š"${frappePath}
+echo "æŒ‡å®šfrappeç‰ˆæœ¬ï¼š"${frappeBranch}
+echo "æ‹‰å–erpnextåœ°å€ï¼š"${erpnextPath}
+echo "æŒ‡å®šerpnextç‰ˆæœ¬ï¼š"${erpnextBranch}
+echo "ç½‘ç«™åç§°ï¼š"${siteName}
+echo "ç½‘ç«™æ•°æ®åº“å¯†ç ï¼š"${siteDbPassword}
+echo "webç«¯å£ï¼š"${webPort}
+echo "æ˜¯å¦ä¿®æ”¹aptå®‰è£…æºï¼š"${altAptSources}
+echo "æ˜¯å¦é™é»˜æ¨¡å¼å®‰è£…ï¼š"${quiet}
+echo "å¦‚æœ‰é‡åç›®å½•æˆ–æ•°æ®åº“æ˜¯å¦åˆ é™¤ï¼š"${removeDuplicate}
+echo "æ˜¯å¦ä¸ºdockeré•œåƒå†…å®‰è£…é€‚é…ï¼š"${inDocker}
+echo "æ˜¯å¦å¼€å¯ç”Ÿäº§æ¨¡å¼ï¼š"${productionMode}
+# ç­‰å¾…ç¡®è®¤å‚æ•°
 if [[ ${quiet} != "yes" ]];then
-    echo "===================ÇëÈ·ÈÏÒÑÉè¶¨²ÎÊı²¢Ñ¡Ôñ°²×°·½Ê½==================="
-    echo "1. °²×°Îª¿ª·¢Ä£Ê½"
-    echo "2. °²×°ÎªÉú²úÄ£Ê½"
-    echo "3. ²»ÔÙÑ¯ÎÊ£¬°´ÕÕµ±Ç°Éè¶¨°²×°²¢¿ªÆô¾²Ä¬Ä£Ê½"
-    echo "4. ÔÚDocker¾µÏñÀï°²×°²¢¿ªÆô¾²Ä¬Ä£Ê½"
-    echo "*. È¡Ïû°²×°"
-    echo -e "ËµÃ÷£º¿ªÆô¾²Ä¬Ä£Ê½ºó£¬Èç¹ûÓĞÖØÃûÄ¿Â¼»òÊı¾İ¿â°üÀ¨supervisor½ø³ÌÅäÖÃÎÄ¼ş¶¼½«»áÉ¾³ıºó¼ÌĞø°²×°£¬Çë×¢ÒâÊı¾İ±¸·İ£¡ \n \
-        ¿ª·¢Ä£Ê½ĞèÒªÊÖ¶¯Æô¶¯¡°bench start¡±£¬Æô¶¯ºó·ÃÎÊ8000¶Ë¿Ú¡£\n \
-        Éú²úÄ£Ê½ÎŞĞèÊÖ¶¯Æô¶¯£¬Ê¹ÓÃnginx·´´ú²¢¼àÌı80¶Ë¿Ú\n \
-        ´ËÍâÉú²úÄ£Ê½»áÊ¹ÓÃsupervisor¹ÜÀí½ø³ÌÔöÇ¿¿É¿¿ĞÔ£¬²¢Ô¤±àÒë´úÂë¿ªÆôredis»º´æ£¬Ìá¸ßÓ¦ÓÃĞÔÄÜ¡£\n \
-        ÔÚDocker¾µÏñÀï°²×°»áÊÊÅäÆä½ø³ÌÆô¶¯·½Ê½½«mariadb¼°nginx½ø³ÌÒ²½»¸øsupervisor¹ÜÀí¡£ \n \
-        docker¾µÏñÖ÷Ïß³Ì£º¡°sudo supervisord -n -c /etc/supervisor/supervisord.conf¡±¡£Çë×ÔĞĞÅäÖÃµ½¾µÏñ"
-    read -r -p "ÇëÑ¡Ôñ£º " input
+    echo "===================è¯·ç¡®è®¤å·²è®¾å®šå‚æ•°å¹¶é€‰æ‹©å®‰è£…æ–¹å¼==================="
+    echo "1. å®‰è£…ä¸ºå¼€å‘æ¨¡å¼"
+    echo "2. å®‰è£…ä¸ºç”Ÿäº§æ¨¡å¼"
+    echo "3. ä¸å†è¯¢é—®ï¼ŒæŒ‰ç…§å½“å‰è®¾å®šå®‰è£…å¹¶å¼€å¯é™é»˜æ¨¡å¼"
+    echo "4. åœ¨Dockeré•œåƒé‡Œå®‰è£…å¹¶å¼€å¯é™é»˜æ¨¡å¼"
+    echo "*. å–æ¶ˆå®‰è£…"
+    echo -e "è¯´æ˜ï¼šå¼€å¯é™é»˜æ¨¡å¼åï¼Œå¦‚æœæœ‰é‡åç›®å½•æˆ–æ•°æ®åº“åŒ…æ‹¬supervisorè¿›ç¨‹é…ç½®æ–‡ä»¶éƒ½å°†ä¼šåˆ é™¤åç»§ç»­å®‰è£…ï¼Œè¯·æ³¨æ„æ•°æ®å¤‡ä»½ï¼ \n \
+        å¼€å‘æ¨¡å¼éœ€è¦æ‰‹åŠ¨å¯åŠ¨â€œbench startâ€ï¼Œå¯åŠ¨åè®¿é—®8000ç«¯å£ã€‚\n \
+        ç”Ÿäº§æ¨¡å¼æ— éœ€æ‰‹åŠ¨å¯åŠ¨ï¼Œä½¿ç”¨nginxåä»£å¹¶ç›‘å¬80ç«¯å£\n \
+        æ­¤å¤–ç”Ÿäº§æ¨¡å¼ä¼šä½¿ç”¨supervisorç®¡ç†è¿›ç¨‹å¢å¼ºå¯é æ€§ï¼Œå¹¶é¢„ç¼–è¯‘ä»£ç å¼€å¯redisç¼“å­˜ï¼Œæé«˜åº”ç”¨æ€§èƒ½ã€‚\n \
+        åœ¨Dockeré•œåƒé‡Œå®‰è£…ä¼šé€‚é…å…¶è¿›ç¨‹å¯åŠ¨æ–¹å¼å°†mariadbåŠnginxè¿›ç¨‹ä¹Ÿäº¤ç»™supervisorç®¡ç†ã€‚ \n \
+        dockeré•œåƒä¸»çº¿ç¨‹ï¼šâ€œsudo supervisord -n -c /etc/supervisor/supervisord.confâ€ã€‚è¯·è‡ªè¡Œé…ç½®åˆ°é•œåƒ"
+    read -r -p "è¯·é€‰æ‹©ï¼š " input
     case ${input} in
         1)
             productionMode="no"
@@ -244,13 +244,13 @@ if [[ ${quiet} != "yes" ]];then
             inDocker="yes"
     	    ;;
         *)
-            echo "È¡Ïû°²×°..."
+            echo "å–æ¶ˆå®‰è£…..."
             exit 1
     	    ;;
     esac
 fi
-# ¸ø²ÎÊıÌí¼Ó¹Ø¼ü×Ö
-echo "===================¸øĞèÒªµÄ²ÎÊıÌí¼Ó¹Ø¼ü×Ö==================="
+# ç»™å‚æ•°æ·»åŠ å…³é”®å­—
+echo "===================ç»™éœ€è¦çš„å‚æ•°æ·»åŠ å…³é”®å­—==================="
 if [[ ${benchVersion} != "" ]];then
     benchVersion="==${benchVersion}"
 fi
@@ -267,10 +267,10 @@ if [[ ${siteDbPassword} != "" ]];then
     siteDbPassword="--db-password ${siteDbPassword}"
 fi
 
-# ¿ªÊ¼°²×°»ù´¡Èí¼ş£¬²¢Çó¸ÄÅäÖÃÊ¹Æä·ûºÏÒªÇó
-# ĞŞ¸Ä°²×°Ô´¼ÓËÙ¹úÄÚ°²×°¡£
+# å¼€å§‹å®‰è£…åŸºç¡€è½¯ä»¶ï¼Œå¹¶æ±‚æ”¹é…ç½®ä½¿å…¶ç¬¦åˆè¦æ±‚
+# ä¿®æ”¹å®‰è£…æºåŠ é€Ÿå›½å†…å®‰è£…ã€‚
 if [[ ${altAptSources} == "yes" ]];then
-    # ÔÚÖ´ĞĞÇ°È·¶¨ÓĞ²Ù×÷È¨ÏŞ
+    # åœ¨æ‰§è¡Œå‰ç¡®å®šæœ‰æ“ä½œæƒé™
     if [[ ! -e /etc/apt/sources.list.bak ]]; then
         cp /etc/apt/sources.list /etc/apt/sources.list.bak
     fi
@@ -285,10 +285,10 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted 
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
 # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
 EOF"
-    echo "===================aptÒÑĞŞ¸ÄÎª¹úÄÚÔ´==================="
+    echo "===================aptå·²ä¿®æ”¹ä¸ºå›½å†…æº==================="
 fi
-# °²×°»ù´¡Èí¼ş
-echo "===================°²×°»ù´¡Èí¼ş==================="
+# å®‰è£…åŸºç¡€è½¯ä»¶
+echo "===================å®‰è£…åŸºç¡€è½¯ä»¶==================="
 apt update
 DEBIAN_FRONTEND=noninteractive apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt install -y \
@@ -313,22 +313,22 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     libfontconfig \
     wkhtmltopdf \
     supervisor
-# »·¾³ĞèÇó¼ì²é
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥
 rteArr=()
 warnArr=()
-# ¼ì²âÊÇ·ñÓĞÖ®Ç°°²×°µÄÄ¿Â¼
+# æ£€æµ‹æ˜¯å¦æœ‰ä¹‹å‰å®‰è£…çš„ç›®å½•
 while [[ -d "/home/${userName}/${installDir}" ]]; do
     if [[ ${quiet} != "yes" && ${inDocker} != "yes" ]]; then
         clear
     fi
-    echo "¼ì²âµ½ÒÑ´æÔÚ°²×°Ä¿Â¼£º/home/${userName}/${installDir}"
+    echo "æ£€æµ‹åˆ°å·²å­˜åœ¨å®‰è£…ç›®å½•ï¼š/home/${userName}/${installDir}"
     if [[ ${quiet} != "yes" ]];then
-        echo '1. É¾³ıºó¼ÌĞø°²×°¡££¨ÍÆ¼ö£©'
-        echo '2. ÊäÈëÒ»¸öĞÂµÄ°²×°Ä¿Â¼¡£'
-        read -r -p "*. È¡Ïû°²×°" input
+        echo '1. åˆ é™¤åç»§ç»­å®‰è£…ã€‚ï¼ˆæ¨èï¼‰'
+        echo '2. è¾“å…¥ä¸€ä¸ªæ–°çš„å®‰è£…ç›®å½•ã€‚'
+        read -r -p "*. å–æ¶ˆå®‰è£…" input
         case ${input} in
             1)
-                echo "É¾³ıÄ¿Â¼ÖØĞÂ³õÊ¼»¯£¡"
+                echo "åˆ é™¤ç›®å½•é‡æ–°åˆå§‹åŒ–ï¼"
                 rm -rf /home/${userName}/${installDir}
                 rm -f /etc/supervisor/conf.d/${installDir}.conf
                 rm -f /etc/nginx/conf.d/${installDir}.conf
@@ -336,13 +336,13 @@ while [[ -d "/home/${userName}/${installDir}" ]]; do
             2)
                 while true
                 do
-                    echo "µ±Ç°Ä¿Â¼Ãû³Æ£º"${installDir}
-                    read -r -p "ÇëÊäÈëĞÂµÄ°²×°Ä¿Â¼Ãû³Æ£º" input
+                    echo "å½“å‰ç›®å½•åç§°ï¼š"${installDir}
+                    read -r -p "è¯·è¾“å…¥æ–°çš„å®‰è£…ç›®å½•åç§°ï¼š" input
                     if [[ ${input} != "" ]]; then
                         installDir=${input}
-                        read -r -p "Ê¹ÓÃĞÂµÄ°²×°Ä¿Â¼Ãû³Æ${siteName}£¬yÈ·ÈÏ£¬nÖØĞÂÊäÈë£º" input
+                        read -r -p "ä½¿ç”¨æ–°çš„å®‰è£…ç›®å½•åç§°${siteName}ï¼Œyç¡®è®¤ï¼Œné‡æ–°è¾“å…¥ï¼š" input
                         if [[ ${input} == [y/Y] ]]; then
-                            echo "½«Ê¹ÓÃ°²×°Ä¿Â¼Ãû³Æ${installDir}ÖØÊÔ¡£"
+                            echo "å°†ä½¿ç”¨å®‰è£…ç›®å½•åç§°${installDir}é‡è¯•ã€‚"
                             break
                         fi
                     fi
@@ -350,66 +350,66 @@ while [[ -d "/home/${userName}/${installDir}" ]]; do
                 continue
                 ;;
             *)
-                echo "È¡Ïû°²×°¡£"
+                echo "å–æ¶ˆå®‰è£…ã€‚"
                 exit 1
                 ;;
         esac
     else
-        echo "¾²Ä¬Ä£Ê½£¬É¾³ıÄ¿Â¼ÖØĞÂ³õÊ¼»¯£¡"
+        echo "é™é»˜æ¨¡å¼ï¼Œåˆ é™¤ç›®å½•é‡æ–°åˆå§‹åŒ–ï¼"
         rm -rf /home/${userName}/${installDir}
     fi
 done
-# »·¾³ĞèÇó¼ì²é,python3
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,python3
 if type python3 >/dev/null 2>&1; then
     result=$(python3 -V | grep "3.10" || true)
     if [[ "${result}" == "" ]]
     then
-        echo '==========ÒÑ°²×°python3£¬µ«²»ÊÇÍÆ¼öµÄ3.10°æ±¾¡£=========='
-        warnArr[${#warnArr[@]}]="Python²»ÊÇÍÆ¼öµÄ3.10°æ±¾¡£"
+        echo '==========å·²å®‰è£…python3ï¼Œä½†ä¸æ˜¯æ¨èçš„3.10ç‰ˆæœ¬ã€‚=========='
+        warnArr[${#warnArr[@]}]="Pythonä¸æ˜¯æ¨èçš„3.10ç‰ˆæœ¬ã€‚"
     else
-        echo '==========ÒÑ°²×°python3.10=========='
+        echo '==========å·²å®‰è£…python3.10=========='
     fi
     rteArr[${#rteArr[@]}]=$(python3 -V)
 else
-    echo "==========python°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========pythonå®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
-# »·¾³ĞèÇó¼ì²é,wkhtmltox
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,wkhtmltox
 if type wkhtmltopdf >/dev/null 2>&1; then
     result=$(wkhtmltopdf -V | grep "0.12.6" || true)
     if [[ ${result} == "" ]]
     then
-        echo '==========ÒÑ´æÔÚwkhtmltox£¬µ«²»ÊÇÍÆ¼öµÄ0.12.6°æ±¾¡£=========='
-        warnArr[${#warnArr[@]}]='wkhtmltox²»ÊÇÍÆ¼öµÄ0.12.6°æ±¾¡£'
+        echo '==========å·²å­˜åœ¨wkhtmltoxï¼Œä½†ä¸æ˜¯æ¨èçš„0.12.6ç‰ˆæœ¬ã€‚=========='
+        warnArr[${#warnArr[@]}]='wkhtmltoxä¸æ˜¯æ¨èçš„0.12.6ç‰ˆæœ¬ã€‚'
     else
-        echo '==========ÒÑ°²×°wkhtmltox_0.12.6=========='
+        echo '==========å·²å®‰è£…wkhtmltox_0.12.6=========='
     fi
     rteArr[${#rteArr[@]}]=$(wkhtmltopdf -V)
 else
-    echo "==========wkhtmltox°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========wkhtmltoxå®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
-# »·¾³ĞèÇó¼ì²é,MariaDB
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,MariaDB
 # https://mirrors.aliyun.com/mariadb/mariadb-10.6.8/bintar-linux-systemd-x86_64/mariadb-10.6.8-linux-systemd-x86_64.tar.gz
 if type mysql >/dev/null 2>&1; then
     result=$(mysql -V | grep "10.6" || true)
     if [[ "${result}" == "" ]]
     then
-        echo '==========ÒÑ°²×°MariaDB£¬µ«²»ÊÇÍÆ¼öµÄ10.6°æ±¾¡£=========='
-        warnArr[${#warnArr[@]}]='MariaDB²»ÊÇÍÆ¼öµÄ10.6°æ±¾¡£'
+        echo '==========å·²å®‰è£…MariaDBï¼Œä½†ä¸æ˜¯æ¨èçš„10.6ç‰ˆæœ¬ã€‚=========='
+        warnArr[${#warnArr[@]}]='MariaDBä¸æ˜¯æ¨èçš„10.6ç‰ˆæœ¬ã€‚'
     else
-        echo '==========ÒÑ°²×°MariaDB10.6=========='
+        echo '==========å·²å®‰è£…MariaDB10.6=========='
     fi
     rteArr[${#rteArr[@]}]=$(mysql -V)
 else
-    echo "==========MariaDB°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========MariaDBå®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
-# ĞŞ¸ÄÊı¾İ¿âÅäÖÃÎÄ¼ş
-# Èç¹ûÖ®Ç°ĞŞ¸Ä¹ıÔòÌø¹ı
+# ä¿®æ”¹æ•°æ®åº“é…ç½®æ–‡ä»¶
+# å¦‚æœä¹‹å‰ä¿®æ”¹è¿‡åˆ™è·³è¿‡
 n=$(cat /etc/mysql/my.cnf | grep -c "# ERPNext install script added" || true)
 if [[ ${n} == 0 ]]; then
-    echo "===================ĞŞ¸ÄÊı¾İ¿âÅäÖÃÎÄ¼ş==================="
+    echo "===================ä¿®æ”¹æ•°æ®åº“é…ç½®æ–‡ä»¶==================="
     echo "# ERPNext install script added" >> /etc/mysql/my.cnf
     echo "[mysqld]" >> /etc/mysql/my.cnf
     echo "character-set-client-handshake=FALSE" >> /etc/mysql/my.cnf
@@ -421,31 +421,31 @@ if [[ ${n} == 0 ]]; then
     echo "default-character-set=utf8mb4" >> /etc/mysql/my.cnf
 fi
 /etc/init.d/mariadb restart
-# µÈ´ı2Ãë
+# ç­‰å¾…2ç§’
 for i in $(seq -w 2); do
     echo ${i}
     sleep 1
 done
-# ÊÚÈ¨Ô¶³Ì·ÃÎÊ²¢ĞŞ¸ÄÃÜÂë
+# æˆæƒè¿œç¨‹è®¿é—®å¹¶ä¿®æ”¹å¯†ç 
 if mysql -uroot -e quit >/dev/null 2>&1
 then
-    echo "===================ĞŞ¸ÄÊı¾İ¿âroot±¾µØ·ÃÎÊÃÜÂë==================="
+    echo "===================ä¿®æ”¹æ•°æ®åº“rootæœ¬åœ°è®¿é—®å¯†ç ==================="
     mysqladmin -v -uroot password ${mariadbRootPassword}
 elif mysql -uroot -p${mariadbRootPassword} -e quit >/dev/null 2>&1
 then
-    echo "===================Êı¾İ¿âroot±¾µØ·ÃÎÊÃÜÂëÒÑÅäÖÃ==================="
+    echo "===================æ•°æ®åº“rootæœ¬åœ°è®¿é—®å¯†ç å·²é…ç½®==================="
 else
-    echo "===================Êı¾İ¿âroot±¾µØ·ÃÎÊÃÜÂë´íÎó==================="
+    echo "===================æ•°æ®åº“rootæœ¬åœ°è®¿é—®å¯†ç é”™è¯¯==================="
     exit 1
 fi
-echo "===================ĞŞ¸ÄÊı¾İ¿ârootÔ¶³Ì·ÃÎÊÃÜÂë==================="
+echo "===================ä¿®æ”¹æ•°æ®åº“rootè¿œç¨‹è®¿é—®å¯†ç ==================="
 mysql -u root -p${mariadbRootPassword} -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${mariadbRootPassword}' WITH GRANT OPTION;"
-echo "===================Ë¢ĞÂÈ¨ÏŞ±í==================="
+echo "===================åˆ·æ–°æƒé™è¡¨==================="
 mysqladmin -v -uroot -p${mariadbRootPassword} reload
 sed -i 's/^password.*$/password='"${mariadbRootPassword}"'/' /etc/mysql/debian.cnf
-echo "===================Êı¾İ¿âÅäÖÃÍê³É==================="
-# ¼ì²éÊı¾İ¿âÊÇ·ñÓĞÍ¬ÃûÓÃ»§¡£ÈçÓĞ£¬Ñ¡Ôñ´¦Àí·½Ê½¡£
-echo "==========¼ì²éÊı¾İ¿â²ĞÁô=========="
+echo "===================æ•°æ®åº“é…ç½®å®Œæˆ==================="
+# æ£€æŸ¥æ•°æ®åº“æ˜¯å¦æœ‰åŒåç”¨æˆ·ã€‚å¦‚æœ‰ï¼Œé€‰æ‹©å¤„ç†æ–¹å¼ã€‚
+echo "==========æ£€æŸ¥æ•°æ®åº“æ®‹ç•™=========="
 while true
 do
     siteSha1=$(echo -n ${siteName} | sha1sum)
@@ -455,37 +455,37 @@ do
         if [[ ${quiet} != "yes" && ${inDocker} != "yes" ]]; then
             clear
         fi
-        echo 'µ±Ç°Õ¾µãÃû³Æ£º'${siteName}
-        echo 'Éú³ÉµÄÊı¾İ¿â¼°ÓÃ»§ÃûÎª£º'${siteSha1}
-        echo 'ÒÑ´æÔÚÍ¬ÃûÊı¾İ¿âÓÃ»§£¬ÇëÑ¡Ôñ´¦Àí·½Ê½¡£'
-        echo '1. ÖØĞÂÊäÈëĞÂµÄÕ¾µãÃû³Æ¡£½«×Ô¶¯Éú³ÉĞÂµÄÊı¾İ¿â¼°ÓÃ»§Ãû³ÆÖØĞÂĞ£Ñé¡£'
-        echo '2. É¾³ıÖØÃûµÄÊı¾İ¿â¼°ÓÃ»§¡£'
-        echo '3. Ê²Ã´Ò²²»×öÊ¹ÓÃÉèÖÃµÄÃÜÂëÖ±½Ó°²×°¡££¨²»ÍÆ¼ö£©'
-        echo '*. È¡Ïû°²×°¡£'
+        echo 'å½“å‰ç«™ç‚¹åç§°ï¼š'${siteName}
+        echo 'ç”Ÿæˆçš„æ•°æ®åº“åŠç”¨æˆ·åä¸ºï¼š'${siteSha1}
+        echo 'å·²å­˜åœ¨åŒåæ•°æ®åº“ç”¨æˆ·ï¼Œè¯·é€‰æ‹©å¤„ç†æ–¹å¼ã€‚'
+        echo '1. é‡æ–°è¾“å…¥æ–°çš„ç«™ç‚¹åç§°ã€‚å°†è‡ªåŠ¨ç”Ÿæˆæ–°çš„æ•°æ®åº“åŠç”¨æˆ·åç§°é‡æ–°æ ¡éªŒã€‚'
+        echo '2. åˆ é™¤é‡åçš„æ•°æ®åº“åŠç”¨æˆ·ã€‚'
+        echo '3. ä»€ä¹ˆä¹Ÿä¸åšä½¿ç”¨è®¾ç½®çš„å¯†ç ç›´æ¥å®‰è£…ã€‚ï¼ˆä¸æ¨èï¼‰'
+        echo '*. å–æ¶ˆå®‰è£…ã€‚'
         if [[ ${quiet} == "yes" ]]; then
-            echo 'µ±Ç°Îª¾²Ä¬Ä£Ê½£¬½«×Ô¶¯°´µÚ2ÏîÖ´ĞĞ¡£'
-            # É¾³ıÖØÃûÊı¾İ¿â
+            echo 'å½“å‰ä¸ºé™é»˜æ¨¡å¼ï¼Œå°†è‡ªåŠ¨æŒ‰ç¬¬2é¡¹æ‰§è¡Œã€‚'
+            # åˆ é™¤é‡åæ•°æ®åº“
             mysql -u root -p${mariadbRootPassword} -e "drop database ${siteSha1};"
             arrUser=(${dbUser})
-            # Èç¹ûÖØÃûÓÃ»§ÓĞ¶à¸öhost£¬ÒÔ²½½ø2È¡ÓÃ»§ÃûºÍÓÃ»§host²¢É¾³ı¡£
+            # å¦‚æœé‡åç”¨æˆ·æœ‰å¤šä¸ªhostï¼Œä»¥æ­¥è¿›2å–ç”¨æˆ·åå’Œç”¨æˆ·hostå¹¶åˆ é™¤ã€‚
             for ((i=0; i<${#arrUser[@]}; i=i+2))
             do
                 mysql -u root -p${mariadbRootPassword} -e "drop user ${arrUser[$i]}@${arrUser[$i+1]};"
             done
-            echo "ÒÑÉ¾³ıÊı¾İ¿â¼°ÓÃ»§£¬¼ÌĞø°²×°£¡"
+            echo "å·²åˆ é™¤æ•°æ®åº“åŠç”¨æˆ·ï¼Œç»§ç»­å®‰è£…ï¼"
             continue
         fi
-        read -r -p "ÇëÊäÈëÑ¡Ôñ£º" input
+        read -r -p "è¯·è¾“å…¥é€‰æ‹©ï¼š" input
         case ${input} in
             '1')
                 while true
                 do
-                    read -r -p "ÇëÊäÈëĞÂµÄÕ¾µãÃû³Æ£º" inputSiteName
+                    read -r -p "è¯·è¾“å…¥æ–°çš„ç«™ç‚¹åç§°ï¼š" inputSiteName
                     if [[ ${inputSiteName} != "" ]]; then
                         siteName=${inputSiteName}
-                        read -r -p "Ê¹ÓÃĞÂµÄÕ¾µãÃû³Æ${siteName}£¬yÈ·ÈÏ£¬nÖØĞÂÊäÈë£º" input
+                        read -r -p "ä½¿ç”¨æ–°çš„ç«™ç‚¹åç§°${siteName}ï¼Œyç¡®è®¤ï¼Œné‡æ–°è¾“å…¥ï¼š" input
                         if [[ ${input} == [y/Y] ]]; then
-                            echo "½«Ê¹ÓÃÕ¾µãÃû³Æ${siteName}ÖØÊÔ¡£"
+                            echo "å°†ä½¿ç”¨ç«™ç‚¹åç§°${siteName}é‡è¯•ã€‚"
                             break
                         fi
                     fi
@@ -499,26 +499,26 @@ do
                 do
                     mysql -u root -p${mariadbRootPassword} -e "drop user ${arrUser[$i]}@${arrUser[$i+1]};"
                 done
-                echo "ÒÑÉ¾³ıÊı¾İ¿â¼°ÓÃ»§£¬¼ÌĞø°²×°£¡"
+                echo "å·²åˆ é™¤æ•°æ®åº“åŠç”¨æˆ·ï¼Œç»§ç»­å®‰è£…ï¼"
                 continue
                 ;;
             '3')
-                echo "Ê²Ã´Ò²²»×öÊ¹ÓÃÉèÖÃµÄÃÜÂëÖ±½Ó°²×°£¡"
-                warnArr[${#warnArr[@]}]="¼ì²âµ½ÖØÃûÊı¾İ¿â¼°ÓÃ»§${siteSha1},Ñ¡ÔñÁË¸²¸Ç°²×°¡£¿ÉÄÜÔì³ÉÎŞ·¨·ÃÎÊ£¬Êı¾İ¿âÎŞ·¨Á¬½ÓµÈÎÊÌâ¡£"
+                echo "ä»€ä¹ˆä¹Ÿä¸åšä½¿ç”¨è®¾ç½®çš„å¯†ç ç›´æ¥å®‰è£…ï¼"
+                warnArr[${#warnArr[@]}]="æ£€æµ‹åˆ°é‡åæ•°æ®åº“åŠç”¨æˆ·${siteSha1},é€‰æ‹©äº†è¦†ç›–å®‰è£…ã€‚å¯èƒ½é€ æˆæ— æ³•è®¿é—®ï¼Œæ•°æ®åº“æ— æ³•è¿æ¥ç­‰é—®é¢˜ã€‚"
                 break
                 ;;
             *)
-            echo "È¡Ïû°²×°..."
+            echo "å–æ¶ˆå®‰è£…..."
             exit 1
             ;;
         esac
     else
-        echo "ÎŞÖØÃûÊı¾İ¿â»òÓÃ»§¡£"
+        echo "æ— é‡åæ•°æ®åº“æˆ–ç”¨æˆ·ã€‚"
         break
     fi
 done
-# È·ÈÏ¿ÉÓÃµÄÖØÆôÖ¸Áî
-echo "È·ÈÏsupervisor¿ÉÓÃÖØÆôÖ¸Áî¡£"
+# ç¡®è®¤å¯ç”¨çš„é‡å¯æŒ‡ä»¤
+echo "ç¡®è®¤supervisorå¯ç”¨é‡å¯æŒ‡ä»¤ã€‚"
 supervisorCommand=""
 if type supervisord >/dev/null 2>&1; then
     if [[ $(grep -E "[ *]reload)" /etc/init.d/supervisor) != '' ]]; then
@@ -526,21 +526,21 @@ if type supervisord >/dev/null 2>&1; then
     elif [[ $(grep -E "[ *]restart)" /etc/init.d/supervisor) != '' ]]; then
         supervisorCommand="restart"
     else
-        echo "/etc/init.d/supervisorÖĞÃ»ÓĞÕÒµ½reload»òrestartÖ¸Áî"
-        echo "½«»á¼ÌĞøÖ´ĞĞ£¬µ«¿ÉÄÜÒòÎªÊ¹ÓÃ²»¿ÉÓÃÖ¸Áîµ¼ÖÂÆô¶¯½ø³ÌÊ§°Ü¡£"
-        echo "Èç½ø³ÌÃ»ÓĞÔËĞĞ£¬Çë³¢ÊÔÊÖ¶¯ÖØÆôsupervisor"
-        warnArr[${#warnArr[@]}]="Ã»ÓĞÕÒµ½¿ÉÓÃµÄsupervisorÖØÆôÖ¸Áî£¬ÈçÓĞ½ø³ÌÆô¶¯Ê§°Ü£¬Çë³¢ÊÔÊÖ¶¯ÖØÆô¡£"
+        echo "/etc/init.d/supervisorä¸­æ²¡æœ‰æ‰¾åˆ°reloadæˆ–restartæŒ‡ä»¤"
+        echo "å°†ä¼šç»§ç»­æ‰§è¡Œï¼Œä½†å¯èƒ½å› ä¸ºä½¿ç”¨ä¸å¯ç”¨æŒ‡ä»¤å¯¼è‡´å¯åŠ¨è¿›ç¨‹å¤±è´¥ã€‚"
+        echo "å¦‚è¿›ç¨‹æ²¡æœ‰è¿è¡Œï¼Œè¯·å°è¯•æ‰‹åŠ¨é‡å¯supervisor"
+        warnArr[${#warnArr[@]}]="æ²¡æœ‰æ‰¾åˆ°å¯ç”¨çš„supervisoré‡å¯æŒ‡ä»¤ï¼Œå¦‚æœ‰è¿›ç¨‹å¯åŠ¨å¤±è´¥ï¼Œè¯·å°è¯•æ‰‹åŠ¨é‡å¯ã€‚"
     fi
 else
-    echo "supervisorÃ»ÓĞ°²×°"
-    warnArr[${#warnArr[@]}]="supervisorÃ»ÓĞ°²×°»ò°²×°Ê§°Ü£¬²»ÄÜÊ¹ÓÃsupervisor¹ÜÀí½ø³Ì¡£"
+    echo "supervisoræ²¡æœ‰å®‰è£…"
+    warnArr[${#warnArr[@]}]="supervisoræ²¡æœ‰å®‰è£…æˆ–å®‰è£…å¤±è´¥ï¼Œä¸èƒ½ä½¿ç”¨supervisorç®¡ç†è¿›ç¨‹ã€‚"
 fi
-echo "¿ÉÓÃÖ¸Áî£º"${supervisorCommand}
-# °²×°×îĞÂ°æredis
-# ¼ì²éÊÇ·ñ°²×°redis
+echo "å¯ç”¨æŒ‡ä»¤ï¼š"${supervisorCommand}
+# å®‰è£…æœ€æ–°ç‰ˆredis
+# æ£€æŸ¥æ˜¯å¦å®‰è£…redis
 if ! type redis-server >/dev/null 2>&1; then
-    # »ñÈ¡×îĞÂ°æredis£¬²¢°²×°
-    echo "==========»ñÈ¡×îĞÂ°æredis£¬²¢°²×°=========="
+    # è·å–æœ€æ–°ç‰ˆredisï¼Œå¹¶å®‰è£…
+    echo "==========è·å–æœ€æ–°ç‰ˆredisï¼Œå¹¶å®‰è£…=========="
     rm -rf /var/lib/redis
     rm -rf /etc/redis
     rm -rf /etc/default/redis-server
@@ -550,46 +550,46 @@ if ! type redis-server >/dev/null 2>&1; then
     echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/redis.list
     apt update
     # redisV=($(apt-cache madison redis | grep -o 6:6.2.*jammy1 | head -1))
-    # echo "redis6.2×îĞÂ°æ±¾Îª£º${redisV[0]}"
-    echo "¼´½«°²×°redis"
+    # echo "redis6.2æœ€æ–°ç‰ˆæœ¬ä¸ºï¼š${redisV[0]}"
+    echo "å³å°†å®‰è£…redis"
     DEBIAN_FRONTEND=noninteractive apt install -y \
         redis-tools \
         redis-server \
         redis
 fi
-# »·¾³ĞèÇó¼ì²é,redis
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,redis
 if type redis-server >/dev/null 2>&1; then
     result=$(redis-server -v | grep "7" || true)
     if [[ "${result}" == "" ]]
     then
-        echo '==========ÒÑ°²×°redis£¬µ«²»ÊÇÍÆ¼öµÄ7°æ±¾¡£=========='
-        warnArr[${#warnArr[@]}]='redis²»ÊÇÍÆ¼öµÄ7°æ±¾¡£'
+        echo '==========å·²å®‰è£…redisï¼Œä½†ä¸æ˜¯æ¨èçš„7ç‰ˆæœ¬ã€‚=========='
+        warnArr[${#warnArr[@]}]='redisä¸æ˜¯æ¨èçš„7ç‰ˆæœ¬ã€‚'
     else
-        echo '==========ÒÑ°²×°redis7=========='
+        echo '==========å·²å®‰è£…redis7=========='
     fi
     rteArr[${#rteArr[@]}]=$(redis-server -v)
 else
-    echo "==========redis°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========rediså®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
-# ĞŞ¸ÄpipÄ¬ÈÏÔ´¼ÓËÙ¹úÄÚ°²×°
-# ÔÚÖ´ĞĞÇ°È·¶¨ÓĞ²Ù×÷È¨ÏŞ
+# ä¿®æ”¹pipé»˜è®¤æºåŠ é€Ÿå›½å†…å®‰è£…
+# åœ¨æ‰§è¡Œå‰ç¡®å®šæœ‰æ“ä½œæƒé™
 # pip3 config list
 mkdir -p /root/.pip
 echo '[global]' > /root/.pip/pip.conf
 echo 'index-url=https://pypi.tuna.tsinghua.edu.cn/simple' >> /root/.pip/pip.conf
 echo '[install]' >> /root/.pip/pip.conf
 echo 'trusted-host=mirrors.tuna.tsinghua.edu.cn' >> /root/.pip/pip.conf
-echo "===================pipÒÑĞŞ¸ÄÎª¹úÄÚÔ´==================="
-# °²×°²¢Éı¼¶pip¼°¹¤¾ß°ü
-echo "===================°²×°²¢Éı¼¶pip¼°¹¤¾ß°ü==================="
+echo "===================pipå·²ä¿®æ”¹ä¸ºå›½å†…æº==================="
+# å®‰è£…å¹¶å‡çº§pipåŠå·¥å…·åŒ…
+echo "===================å®‰è£…å¹¶å‡çº§pipåŠå·¥å…·åŒ…==================="
 cd ~
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade setuptools cryptography psutil
 alias python=python3
 alias pip=pip3
-# ½¨Á¢ĞÂÓÃ»§×éºÍÓÃ»§
-echo "===================½¨Á¢ĞÂÓÃ»§×éºÍÓÃ»§==================="
+# å»ºç«‹æ–°ç”¨æˆ·ç»„å’Œç”¨æˆ·
+echo "===================å»ºç«‹æ–°ç”¨æˆ·ç»„å’Œç”¨æˆ·==================="
 result=$(grep "${userName}:" /etc/group || true)
 if [[ ${result} == "" ]]; then
     gid=1000
@@ -598,16 +598,16 @@ if [[ ${result} == "" ]]; then
         result=$(grep ":${gid}:" /etc/group || true)
         if [[ ${result} == "" ]]
         then
-            echo "½¨Á¢ĞÂÓÃ»§×é: ${gid}:${userName}"
+            echo "å»ºç«‹æ–°ç”¨æˆ·ç»„: ${gid}:${userName}"
             groupadd -g ${gid} ${userName}
-            echo "ÒÑĞÂ½¨ÓÃ»§×é${userName}£¬gid: ${gid}"
+            echo "å·²æ–°å»ºç”¨æˆ·ç»„${userName}ï¼Œgid: ${gid}"
             break
         else
             gid=$(expr ${gid} + 1)
         fi
     done
 else
-    echo 'ÓÃ»§×éÒÑ´æÔÚ'
+    echo 'ç”¨æˆ·ç»„å·²å­˜åœ¨'
 fi
 result=$(grep "${userName}:" /etc/passwd || true)
 if [[ ${result} == "" ]]
@@ -618,31 +618,31 @@ then
         result=$(grep ":x:${uid}:" /etc/passwd || true)
         if [[ ${result} == "" ]]
         then
-            echo "½¨Á¢ĞÂÓÃ»§: ${uid}:${userName}"
+            echo "å»ºç«‹æ–°ç”¨æˆ·: ${uid}:${userName}"
             useradd --no-log-init -r -m -u ${uid} -g ${gid} -G  sudo ${userName}
-            echo "ÒÑĞÂ½¨ÓÃ»§${userName}£¬uid: ${uid}"
+            echo "å·²æ–°å»ºç”¨æˆ·${userName}ï¼Œuid: ${uid}"
             break
         else
             uid=$(expr ${uid} + 1)
         fi
     done
 else
-    echo 'ÓÃ»§ÒÑ´æÔÚ'
+    echo 'ç”¨æˆ·å·²å­˜åœ¨'
 fi
-# ¸øÓÃ»§Ìí¼ÓsudoÈ¨ÏŞ
+# ç»™ç”¨æˆ·æ·»åŠ sudoæƒé™
 sed -i "/^${userName}.*/d" /etc/sudoers
 echo "${userName} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 mkdir -p /home/${userName}
 sed -i "/^export.*${userName}.*/d" /etc/sudoers
 echo "export PATH=/home/${userName}/.local/bin:\$PATH" >> /home/${userName}/.bashrc
-# ĞŞ¸ÄÓÃ»§pipÄ¬ÈÏÔ´¼ÓËÙ¹úÄÚ°²×°
+# ä¿®æ”¹ç”¨æˆ·pipé»˜è®¤æºåŠ é€Ÿå›½å†…å®‰è£…
 cp -af /root/.pip /home/${userName}/
-# ĞŞÕıÓÃ»§Ä¿Â¼È¨ÏŞ
+# ä¿®æ­£ç”¨æˆ·ç›®å½•æƒé™
 chown -R ${userName}.${userName} /home/${userName}
-# ĞŞÕıÓÃ»§shell
+# ä¿®æ­£ç”¨æˆ·shell
 usermod -s /bin/bash ${userName}
-# ÉèÖÃÓïÑÔ»·¾³
-echo "===================ÉèÖÃÓïÑÔ»·¾³==================="
+# è®¾ç½®è¯­è¨€ç¯å¢ƒ
+echo "===================è®¾ç½®è¯­è¨€ç¯å¢ƒ==================="
 sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 sed -i "/^export.*LC_ALL=.*/d" /root/.bashrc
@@ -653,25 +653,25 @@ sed -i "/^export.*LC_ALL=.*/d" /home/${userName}/.bashrc
 sed -i "/^export.*LC_CTYPE=.*/d" /home/${userName}/.bashrc
 sed -i "/^export.*LANG=.*/d" /home/${userName}/.bashrc
 echo -e "export LC_ALL=en_US.UTF-8\nexport LC_CTYPE=en_US.UTF-8\nexport LANG=en_US.UTF-8" >> /home/${userName}/.bashrc
-# ÉèÖÃÊ±ÇøÎªÉÏº£
-echo "===================ÉèÖÃÊ±ÇøÎªÉÏº£==================="
+# è®¾ç½®æ—¶åŒºä¸ºä¸Šæµ·
+echo "===================è®¾ç½®æ—¶åŒºä¸ºä¸Šæµ·==================="
 ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
-# ÉèÖÃ¼à¿ØÎÄ¼şÊıÁ¿ÉÏÏŞ
-echo "===================ÉèÖÃ¼à¿ØÎÄ¼şÊıÁ¿ÉÏÏŞ==================="
+# è®¾ç½®ç›‘æ§æ–‡ä»¶æ•°é‡ä¸Šé™
+echo "===================è®¾ç½®ç›‘æ§æ–‡ä»¶æ•°é‡ä¸Šé™==================="
 sed -i "/^fs.inotify.max_user_watches=.*/d" /etc/sysctl.conf
 echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
-# Ê¹ÆäÁ¢¼´ÉúĞ§
+# ä½¿å…¶ç«‹å³ç”Ÿæ•ˆ
 /sbin/sysctl -p
-# ¼ì²éÊÇ·ñ°²×°nodejs16
+# æ£€æŸ¥æ˜¯å¦å®‰è£…nodejs16
 source /etc/profile
 if ! type node >/dev/null 2>&1; then
-    # »ñÈ¡×îĞÂ°ænodejs-v16£¬²¢°²×°
-    echo "==========»ñÈ¡×îĞÂ°ænodejs-v16£¬²¢°²×°=========="
+    # è·å–æœ€æ–°ç‰ˆnodejs-v16ï¼Œå¹¶å®‰è£…
+    echo "==========è·å–æœ€æ–°ç‰ˆnodejs-v16ï¼Œå¹¶å®‰è£…=========="
     nodejs0=$(curl -sL https://nodejs.org/download/release/latest-v16.x/ | grep -o node-v16.*-linux-x64.tar.xz)
     nodejs1=${nodejs0%%.tar*}
-    echo "nodejs16×îĞÂ°æ±¾Îª£º${nodejs1}"
-    echo "¼´½«°²×°nodejs16µ½/usr/local/lib/nodejs/${nodejs1}"
+    echo "nodejs16æœ€æ–°ç‰ˆæœ¬ä¸ºï¼š${nodejs1}"
+    echo "å³å°†å®‰è£…nodejs16åˆ°/usr/local/lib/nodejs/${nodejs1}"
     wget https://nodejs.org/download/release/latest-v16.x/${nodejs1}.tar.xz -P /tmp/
     mkdir -p /usr/local/lib/nodejs
     tar -xJf /tmp/${nodejs1}.tar.xz -C /usr/local/lib/nodejs/
@@ -680,43 +680,43 @@ if ! type node >/dev/null 2>&1; then
     export PATH=/usr/local/lib/nodejs/${nodejs1}/bin:$PATH
     source /etc/profile
 fi
-# »·¾³ĞèÇó¼ì²é,node
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,node
 if type node >/dev/null 2>&1; then
     result=$(node -v | grep "v16." || true)
     if [[ ${result} == "" ]]
     then
-        echo '==========ÒÑ´æÔÚnode£¬µ«²»ÊÇv16°æ¡£Õâ½«ÓĞ¿ÉÄÜµ¼ÖÂÒ»Ğ©ÎÊÌâ¡£½¨ÒéĞ¶ÔØnodeºóÖØÊÔ¡£=========='
-        warnArr[${#warnArr[@]}]='node²»ÊÇÍÆ¼öµÄv16°æ±¾¡£'
+        echo '==========å·²å­˜åœ¨nodeï¼Œä½†ä¸æ˜¯v16ç‰ˆã€‚è¿™å°†æœ‰å¯èƒ½å¯¼è‡´ä¸€äº›é—®é¢˜ã€‚å»ºè®®å¸è½½nodeåé‡è¯•ã€‚=========='
+        warnArr[${#warnArr[@]}]='nodeä¸æ˜¯æ¨èçš„v16ç‰ˆæœ¬ã€‚'
     else
-        echo '==========ÒÑ°²×°node16=========='
+        echo '==========å·²å®‰è£…node16=========='
     fi
     rteArr[${#rteArr[@]}]='node '$(node -v)
 else
-    echo "==========node°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========nodeå®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
-# ĞŞ¸ÄnpmÔ´
-# ÔÚÖ´ĞĞÇ°È·¶¨ÓĞ²Ù×÷È¨ÏŞ
+# ä¿®æ”¹npmæº
+# åœ¨æ‰§è¡Œå‰ç¡®å®šæœ‰æ“ä½œæƒé™
 # npm get registry
 npm config set registry https://registry.npmmirror.com -g
-echo "===================npmÒÑĞŞ¸ÄÎª¹úÄÚÔ´==================="
-# Éı¼¶npm
-echo "===================Éı¼¶npm==================="
+echo "===================npmå·²ä¿®æ”¹ä¸ºå›½å†…æº==================="
+# å‡çº§npm
+echo "===================å‡çº§npm==================="
 npm install -g npm
-# °²×°yarn
-echo "===================°²×°yarn==================="
+# å®‰è£…yarn
+echo "===================å®‰è£…yarn==================="
 npm install -g yarn
-# ĞŞ¸ÄyarnÔ´
-# ÔÚÖ´ĞĞÇ°È·¶¨ÓĞ²Ù×÷È¨ÏŞ
+# ä¿®æ”¹yarnæº
+# åœ¨æ‰§è¡Œå‰ç¡®å®šæœ‰æ“ä½œæƒé™
 # yarn config list
 yarn config set registry https://registry.npmmirror.com --global
-echo "===================yarnÒÑĞŞ¸ÄÎª¹úÄÚÔ´==================="
-# »ù´¡ĞèÇó°²×°Íê±Ï¡£
-echo "===================»ù´¡ĞèÇó°²×°Íê±Ï¡£==================="
-# ÇĞ»»ÓÃ»§
+echo "===================yarnå·²ä¿®æ”¹ä¸ºå›½å†…æº==================="
+# åŸºç¡€éœ€æ±‚å®‰è£…å®Œæ¯•ã€‚
+echo "===================åŸºç¡€éœ€æ±‚å®‰è£…å®Œæ¯•ã€‚==================="
+# åˆ‡æ¢ç”¨æˆ·
 su - ${userName} <<EOF
-# ÅäÖÃÔËĞĞ»·¾³±äÁ¿
-echo "===================ÅäÖÃÔËĞĞ»·¾³±äÁ¿==================="
+# é…ç½®è¿è¡Œç¯å¢ƒå˜é‡
+echo "===================é…ç½®è¿è¡Œç¯å¢ƒå˜é‡==================="
 cd ~
 alias python=python3
 alias pip=pip3
@@ -725,28 +725,28 @@ export PATH=/home/${userName}/.local/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
-# ĞŞ¸ÄÓÃ»§yarnÔ´
-# ÔÚÖ´ĞĞÇ°È·¶¨ÓĞ²Ù×÷È¨ÏŞ
+# ä¿®æ”¹ç”¨æˆ·yarnæº
+# åœ¨æ‰§è¡Œå‰ç¡®å®šæœ‰æ“ä½œæƒé™
 # yarn config list
 yarn config set registry https://registry.npmmirror.com --global
-echo "===================ÓÃ»§yarnÒÑĞŞ¸ÄÎª¹úÄÚÔ´==================="
+echo "===================ç”¨æˆ·yarnå·²ä¿®æ”¹ä¸ºå›½å†…æº==================="
 EOF
-# ÖØÆôredis-serverºÍmariadb
-echo "===================ÖØÆôredis-serverºÍmariadb==================="
+# é‡å¯redis-serverå’Œmariadb
+echo "===================é‡å¯redis-serverå’Œmariadb==================="
 # service redis-server restart
 # service mariadb restart
 /etc/init.d/redis-server restart
 /etc/init.d/mariadb restart
-# µÈ´ı2Ãë
+# ç­‰å¾…2ç§’
 for i in $(seq -w 2); do
     echo ${i}
     sleep 1
 done
-# ÊÊÅädocker
-echo "ÅĞ¶ÏÊÇ·ñÊÊÅädocker"
+# é€‚é…docker
+echo "åˆ¤æ–­æ˜¯å¦é€‚é…docker"
 if [[ ${inDocker} == "yes" ]]; then
-    # Èç¹ûÊÇÔÚdockerÖĞÔËĞĞ£¬Ê¹ÓÃsupervisor¹ÜÀímariadbºÍnginx½ø³Ì
-    echo "================Îªdocker¾µÏñÌí¼ÓmariadbºÍnginxÆô¶¯ÅäÖÃÎÄ¼ş==================="
+    # å¦‚æœæ˜¯åœ¨dockerä¸­è¿è¡Œï¼Œä½¿ç”¨supervisorç®¡ç†mariadbå’Œnginxè¿›ç¨‹
+    echo "================ä¸ºdockeré•œåƒæ·»åŠ mariadbå’Œnginxå¯åŠ¨é…ç½®æ–‡ä»¶==================="
     supervisorConfigDir=/home/${userName}/.config/supervisor
     mkdir -p ${supervisorConfigDir}
     f=${supervisorConfigDir}/mariadb.conf
@@ -780,66 +780,66 @@ if [[ ${inDocker} == "yes" ]]; then
     echo "startsecs=10" >> ${f}
     echo "startretries=5" >> ${f}
     echo "stopasgroup=true" >> ${f}
-    # ¹Ø±Õmariadb½ø³Ì£¬Æô¶¯supervisor½ø³Ì²¢¹ÜÀímariadb½ø³Ì
-    echo "¹Ø±Õmariadb½ø³Ì£¬Æô¶¯supervisor½ø³Ì²¢¹ÜÀímariadb½ø³Ì"
+    # å…³é—­mariadbè¿›ç¨‹ï¼Œå¯åŠ¨supervisorè¿›ç¨‹å¹¶ç®¡ç†mariadbè¿›ç¨‹
+    echo "å…³é—­mariadbè¿›ç¨‹ï¼Œå¯åŠ¨supervisorè¿›ç¨‹å¹¶ç®¡ç†mariadbè¿›ç¨‹"
     /etc/init.d/mariadb stop
-    # µÈ´ı2Ãë
+    # ç­‰å¾…2ç§’
     for i in $(seq -w 2); do
         echo ${i}
         sleep 1
     done
     if [[ ! -e /etc/supervisor/conf.d/mysql.conf ]]; then
-        echo "½¨Á¢Êı¾İ¿âÅäÖÃÎÄ¼şÈíÁ´½Ó"
+        echo "å»ºç«‹æ•°æ®åº“é…ç½®æ–‡ä»¶è½¯é“¾æ¥"
         ln -fs ${supervisorConfigDir}/mariadb.conf /etc/supervisor/conf.d/mariadb.conf
     fi
     i=$(ps aux | grep -c supervisor || true)
     if [[ ${i} -le 1 ]]; then
-        echo "Æô¶¯supervisor½ø³Ì"
+        echo "å¯åŠ¨supervisorè¿›ç¨‹"
         /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
     else
-        echo "ÖØÔØsupervisorÅäÖÃ"
+        echo "é‡è½½supervisoré…ç½®"
         /usr/bin/supervisorctl reload
     fi
-    # µÈ´ı2Ãë
+    # ç­‰å¾…2ç§’
     for i in $(seq -w 2); do
         echo ${i}
         sleep 1
     done
 fi
-# °²×°bench
+# å®‰è£…bench
 su - ${userName} <<EOF
-echo "===================°²×°bench==================="
+echo "===================å®‰è£…bench==================="
 sudo -H pip3 install frappe-bench${benchVersion}
-# »·¾³ĞèÇó¼ì²é,bench
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,bench
 if type bench >/dev/null 2>&1; then
     benchV=\$(bench --version)
-    echo '==========ÒÑ°²×°bench=========='
+    echo '==========å·²å®‰è£…bench=========='
     echo \${benchV}
 else
-    echo "==========bench°²×°Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========benchå®‰è£…å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 fi
 EOF
 rteArr[${#rteArr[@]}]='bench '$(bench --version 2>/dev/null)
-# bensh½Å±¾ÊÊÅädocker
+# benshè„šæœ¬é€‚é…docker
 if [[ ${inDocker} == "yes" ]]; then
-    # ĞŞ¸Äbensh½Å±¾²»°²×°fail2ban
-    echo "ÒÑÅäÖÃÔÚdockerÖĞÔËĞĞ£¬½«×¢ÊÍ°²×°fail2banµÄ´úÂë¡£"
-    # È·ÈÏbensh½Å±¾Ê¹ÓÃsupervisorÖ¸Áî´úÂëĞĞ
+    # ä¿®æ”¹benshè„šæœ¬ä¸å®‰è£…fail2ban
+    echo "å·²é…ç½®åœ¨dockerä¸­è¿è¡Œï¼Œå°†æ³¨é‡Šå®‰è£…fail2bançš„ä»£ç ã€‚"
+    # ç¡®è®¤benshè„šæœ¬ä½¿ç”¨supervisoræŒ‡ä»¤ä»£ç è¡Œ
     f="/usr/local/lib/python3.10/dist-packages/bench/config/production_setup.py"
     n=$(sed -n "/^[[:space:]]*if not which.*fail2ban-client/=" ${f})
-    # ÈçÕÒµ½´úÂë×¢ÊÍÅĞ¶ÏĞĞ¼°Ö´ĞĞĞĞ
+    # å¦‚æ‰¾åˆ°ä»£ç æ³¨é‡Šåˆ¤æ–­è¡ŒåŠæ‰§è¡Œè¡Œ
     if [ ${n} ]; then
-        echo "ÕÒµ½fail2ban°²×°´úÂëĞĞ£¬Ìí¼Ó×¢ÊÍ·û¡£"
+        echo "æ‰¾åˆ°fail2banå®‰è£…ä»£ç è¡Œï¼Œæ·»åŠ æ³¨é‡Šç¬¦ã€‚"
         sed -i "${n} s/^/#&/" ${f}
         let n++
         sed -i "${n} s/^/#&/" ${f}
     fi
 fi
-# ³õÊ¼»¯frappe
+# åˆå§‹åŒ–frappe
 su - ${userName} <<EOF
-echo "===================³õÊ¼»¯frappe==================="
-# Èç¹û³õÊ¼»¯Ê§°Ü£¬³¢ÊÔ5´Î¡£
+echo "===================åˆå§‹åŒ–frappe==================="
+# å¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œå°è¯•5æ¬¡ã€‚
 for ((i=0; i<5; i++)); do
     rm -rf ~/${installDir}
     set +e
@@ -847,129 +847,129 @@ for ((i=0; i<5; i++)); do
     err=\$?
     set -e
     if [[ \${err} == 0 ]]; then
-        echo "Ö´ĞĞ·µ»ØÕıÈ·\${i}"
+        echo "æ‰§è¡Œè¿”å›æ­£ç¡®\${i}"
         sleep 1
         break
     elif [[ \${i} -ge 4 ]]; then
-        echo "==========frappe³õÊ¼»¯Ê§°ÜÌ«¶à\${i}£¬ÍË³ö½Å±¾£¡=========="
+        echo "==========frappeåˆå§‹åŒ–å¤±è´¥å¤ªå¤š\${i}ï¼Œé€€å‡ºè„šæœ¬ï¼=========="
         exit 1
     else
-        echo "==========frappe³õÊ¼»¯Ê§°ÜµÚ"\${i}"´Î£¡×Ô¶¯ÖØÊÔ¡£=========="
+        echo "==========frappeåˆå§‹åŒ–å¤±è´¥ç¬¬"\${i}"æ¬¡ï¼è‡ªåŠ¨é‡è¯•ã€‚=========="
     fi
 done
-echo "frappe³õÊ¼»¯½Å±¾Ö´ĞĞ½áÊø..."
+echo "frappeåˆå§‹åŒ–è„šæœ¬æ‰§è¡Œç»“æŸ..."
 EOF
-# È·ÈÏfrappe³õÊ¼»¯
+# ç¡®è®¤frappeåˆå§‹åŒ–
 su - ${userName} <<EOF
 cd ~/${installDir}
-# »·¾³ĞèÇó¼ì²é,frappe
+# ç¯å¢ƒéœ€æ±‚æ£€æŸ¥,frappe
 frappeV=\$(bench version | grep "frappe" || true)
 if [[ \${frappeV} == "" ]]; then
-    echo "==========frappe³õÊ¼»¯Ê§°ÜÍË³ö½Å±¾£¡=========="
+    echo "==========frappeåˆå§‹åŒ–å¤±è´¥é€€å‡ºè„šæœ¬ï¼=========="
     exit 1
 else
-    echo '==========frappe³õÊ¼»¯³É¹¦=========='
+    echo '==========frappeåˆå§‹åŒ–æˆåŠŸ=========='
     echo \${frappeV}
 fi
 EOF
-# »ñÈ¡erpnextÓ¦ÓÃ
+# è·å–erpnextåº”ç”¨
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================»ñÈ¡erpnextÓ¦ÓÃ==================="
+echo "===================è·å–erpnextåº”ç”¨==================="
 bench get-app ${erpnextBranch} ${erpnextPath}
 # cd ~/${installDir} && ./env/bin/pip3 install -e apps/erpnext/
 EOF
-# »ñÈ¡PaymentsÓ¦ÓÃ
+# è·å–Paymentsåº”ç”¨
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================»ñÈ¡PaymentsÓ¦ÓÃ==================="
+echo "===================è·å–Paymentsåº”ç”¨==================="
 # bench get-app payments
 bench get-app https://gitee.com/phipsoft/payments
 EOF
-# ½¨Á¢ĞÂÍøÕ¾
+# å»ºç«‹æ–°ç½‘ç«™
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================½¨Á¢ĞÂÍøÕ¾==================="
+echo "===================å»ºç«‹æ–°ç½‘ç«™==================="
 bench new-site --mariadb-root-password ${mariadbRootPassword} ${siteDbPassword} --admin-password ${adminPassword} ${siteName}
 EOF
-# °²×°erpnextÓ¦ÓÃµ½ĞÂÍøÕ¾
+# å®‰è£…erpnextåº”ç”¨åˆ°æ–°ç½‘ç«™
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================°²×°erpnextÓ¦ÓÃµ½ĞÂÍøÕ¾==================="
+echo "===================å®‰è£…erpnextåº”ç”¨åˆ°æ–°ç½‘ç«™==================="
 bench --site ${siteName} install-app payments
 bench --site ${siteName} install-app erpnext
 EOF
-# Õ¾µãÅäÖÃ
+# ç«™ç‚¹é…ç½®
 su - ${userName} <<EOF
 cd ~/${installDir}
-# ÉèÖÃÍøÕ¾³¬Ê±Ê±¼ä
-echo "===================ÉèÖÃÍøÕ¾³¬Ê±Ê±¼ä==================="
+# è®¾ç½®ç½‘ç«™è¶…æ—¶æ—¶é—´
+echo "===================è®¾ç½®ç½‘ç«™è¶…æ—¶æ—¶é—´==================="
 bench config http_timeout 6000
-# ¿ªÆôÄ¬ÈÏÕ¾µã²¢ÉèÖÃÄ¬ÈÏÕ¾µã
+# å¼€å¯é»˜è®¤ç«™ç‚¹å¹¶è®¾ç½®é»˜è®¤ç«™ç‚¹
 bench config serve_default_site on
 bench use ${siteName}
 EOF
-# °²×°ÖĞÎÄ±¾µØ»¯,Ö»ÓĞ¿ò¼Ü£¬ĞèÒª×ÔĞĞ±à¼­zh.csvÎÄ¼şÌí¼Ó·­Òë´ÊÌõ¡£
-# ÏêÇéÇë¼û£ºhttps://gitee.com/phipsoft/zh_chinese_language
+# å®‰è£…ä¸­æ–‡æœ¬åœ°åŒ–,åªæœ‰æ¡†æ¶ï¼Œéœ€è¦è‡ªè¡Œç¼–è¾‘zh.csvæ–‡ä»¶æ·»åŠ ç¿»è¯‘è¯æ¡ã€‚
+# è¯¦æƒ…è¯·è§ï¼šhttps://gitee.com/phipsoft/zh_chinese_language
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================°²×°ÖĞÎÄ±¾µØ»¯==================="
+echo "===================å®‰è£…ä¸­æ–‡æœ¬åœ°åŒ–==================="
 bench get-app https://gitee.com/yuzelin/erpnext_chinese.git
 bench --site ${siteName} install-app erpnext_chinese
 EOF
-# ÇåÀí¹¤×÷Ì¨
+# æ¸…ç†å·¥ä½œå°
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================ÇåÀí¹¤×÷Ì¨==================="
+echo "===================æ¸…ç†å·¥ä½œå°==================="
 bench clear-cache
 bench clear-website-cache
 EOF
-# Éú²úÄ£Ê½¿ªÆô
+# ç”Ÿäº§æ¨¡å¼å¼€å¯
 if [[ ${productionMode} == "yes" ]]; then
-    echo "================¿ªÆôÉú²úÄ£Ê½==================="
-    # ¿ÉÄÜ»á×Ô¶¯°²×°Ò»Ğ©Èí¼ş£¬Ë¢ĞÂÈí¼ş¿â
+    echo "================å¼€å¯ç”Ÿäº§æ¨¡å¼==================="
+    # å¯èƒ½ä¼šè‡ªåŠ¨å®‰è£…ä¸€äº›è½¯ä»¶ï¼Œåˆ·æ–°è½¯ä»¶åº“
     apt update
-    # Ô¤ÏÈ°²×°nginx£¬·ÀÖ¹×Ô¶¯²¿Êğ³ö´í
+    # é¢„å…ˆå®‰è£…nginxï¼Œé˜²æ­¢è‡ªåŠ¨éƒ¨ç½²å‡ºé”™
     DEBIAN_FRONTEND=noninteractive apt install nginx -y
     rteArr[${#rteArr[@]}]=$(nginx -v 2>/dev/null)
     if [[ ${inDocker} == "yes" ]]; then
-        # Ê¹ÓÃsupervisor¹ÜÀínginx½ø³Ì
+        # ä½¿ç”¨supervisorç®¡ç†nginxè¿›ç¨‹
         /etc/init.d/nginx stop
         if [[ ! -e /etc/supervisor/conf.d/nginx.conf ]]; then
             ln -fs ${supervisorConfigDir}/nginx.conf /etc/supervisor/conf.d/nginx.conf
         fi
-        echo "µ±Ç°supervisor×´Ì¬"
+        echo "å½“å‰supervisorçŠ¶æ€"
         /usr/bin/supervisorctl status
-        echo "ÖØÔØsupervisorÅäÖÃ"
+        echo "é‡è½½supervisoré…ç½®"
         /usr/bin/supervisorctl reload
-        # µÈ´ıÖØÔØsupervisor½áÊø
-        echo "µÈ´ıÖØÔØsupervisor½áÊø"
+        # ç­‰å¾…é‡è½½supervisorç»“æŸ
+        echo "ç­‰å¾…é‡è½½supervisorç»“æŸ"
         for i in $(seq -w 15 -1 1); do
             echo -en ${i}; sleep 1
         done
-        echo "ÖØÔØºósupervisor×´Ì¬"
+        echo "é‡è½½åsupervisorçŠ¶æ€"
         /usr/bin/supervisorctl status
     fi
-    # Èç¹ûÓĞ¼ì²âµ½µÄsupervisor¿ÉÓÃÖØÆôÖ¸Áî£¬ĞŞ¸Äbensh½Å±¾supervisorÖØÆôÖ¸ÁîÎª¿ÉÓÃÖ¸Áî¡£
-    echo "ĞŞÕı½Å±¾´úÂë..."
+    # å¦‚æœæœ‰æ£€æµ‹åˆ°çš„supervisorå¯ç”¨é‡å¯æŒ‡ä»¤ï¼Œä¿®æ”¹benshè„šæœ¬supervisoré‡å¯æŒ‡ä»¤ä¸ºå¯ç”¨æŒ‡ä»¤ã€‚
+    echo "ä¿®æ­£è„šæœ¬ä»£ç ..."
     if [[ ${supervisorCommand} != "" ]]; then
-        echo "¿ÉÓÃµÄsupervisorÖØÆôÖ¸ÁîÎª£º"${supervisorCommand}
-        # È·ÈÏbensh½Å±¾Ê¹ÓÃsupervisorÖ¸Áî´úÂëĞĞ
+        echo "å¯ç”¨çš„supervisoré‡å¯æŒ‡ä»¤ä¸ºï¼š"${supervisorCommand}
+        # ç¡®è®¤benshè„šæœ¬ä½¿ç”¨supervisoræŒ‡ä»¤ä»£ç è¡Œ
         f="/usr/local/lib/python3.10/dist-packages/bench/config/supervisor.py"
         n=$(sed -n "/service.*supervisor.*reload\|service.*supervisor.*restart/=" ${f})
-        # ÈçÕÒµ½Ìæ»»Îª¿ÉÓÃÖ¸Áî
+        # å¦‚æ‰¾åˆ°æ›¿æ¢ä¸ºå¯ç”¨æŒ‡ä»¤
         if [ ${n} ]; then
-            echo "Ìæ»»bensh½Å±¾supervisorÖØÆôÖ¸ÁîÎª£º"${supervisorCommand}
+            echo "æ›¿æ¢benshè„šæœ¬supervisoré‡å¯æŒ‡ä»¤ä¸ºï¼š"${supervisorCommand}
             sed -i "${n} s/reload\|restart/${supervisorCommand}/g" ${f}
         fi
     fi
-    # ×¼±¸Ö´ĞĞ¿ªÆôÉú²úÄ£Ê½½Å±¾
-    # ¼à¿ØÊÇ·ñÉú³ÉfrappeÅäÖÃÎÄ¼ş£¬Ã»ÓĞÔòÖØ¸´Ö´ĞĞ¡£
-    # ¿ªÆô³õÊ¼»¯Ê±Èç¹ûÖ®Ç°supervisorÃ»ÓĞ°²×°»ò°²×°Ê§°Ü»áÔÙ´Î³¢ÊÔ°²×°¡£µ«¿ÉÄÜÒòÎªÃ»ÓĞĞŞ¸ÄÎªÕıÈ·µÄÖØÆôÖ¸Áî²»ÄÜÖØÆô¡£
+    # å‡†å¤‡æ‰§è¡Œå¼€å¯ç”Ÿäº§æ¨¡å¼è„šæœ¬
+    # ç›‘æ§æ˜¯å¦ç”Ÿæˆfrappeé…ç½®æ–‡ä»¶ï¼Œæ²¡æœ‰åˆ™é‡å¤æ‰§è¡Œã€‚
+    # å¼€å¯åˆå§‹åŒ–æ—¶å¦‚æœä¹‹å‰supervisoræ²¡æœ‰å®‰è£…æˆ–å®‰è£…å¤±è´¥ä¼šå†æ¬¡å°è¯•å®‰è£…ã€‚ä½†å¯èƒ½å› ä¸ºæ²¡æœ‰ä¿®æ”¹ä¸ºæ­£ç¡®çš„é‡å¯æŒ‡ä»¤ä¸èƒ½é‡å¯ã€‚
     f="/etc/supervisor/conf.d/${installDir}.conf"
     i=0
     while [[ i -lt 9 ]]; do
-        echo "³¢ÊÔ¿ªÆôÉú²úÄ£Ê½${i}..."
+        echo "å°è¯•å¼€å¯ç”Ÿäº§æ¨¡å¼${i}..."
         set +e
         su - ${userName} <<EOF
         cd ~/${installDir}
@@ -977,85 +977,85 @@ if [[ ${productionMode} == "yes" ]]; then
 EOF
         set -e
         i=$((${i} + 1))
-        echo "ÅĞ¶ÏÖ´ĞĞ½á¹û"
+        echo "åˆ¤æ–­æ‰§è¡Œç»“æœ"
         sleep 1
         if [[ -e ${f} ]]; then
-            echo "ÅäÖÃÎÄ¼şÒÑÉú³É..."
+            echo "é…ç½®æ–‡ä»¶å·²ç”Ÿæˆ..."
             break
         elif [[ ${i} -ge 9 ]]; then
-            echo "Ê§°Ü´ÎÊı¹ı¶à${i}£¬Çë³¢ÊÔÊÖ¶¯¿ªÆô£¡"
+            echo "å¤±è´¥æ¬¡æ•°è¿‡å¤š${i}ï¼Œè¯·å°è¯•æ‰‹åŠ¨å¼€å¯ï¼"
             break
         else
-            echo "ÅäÖÃÎÄ¼şÉú³ÉÊ§°Ü${i}£¬×Ô¶¯ÖØÊÔ¡£"
+            echo "é…ç½®æ–‡ä»¶ç”Ÿæˆå¤±è´¥${i}ï¼Œè‡ªåŠ¨é‡è¯•ã€‚"
         fi
     done
-    # echo "ÖØÔØsupervisorÅäÖÃ"
+    # echo "é‡è½½supervisoré…ç½®"
     # /usr/bin/supervisorctl reload 
     # sleep 2
 fi
-# Èç¹ûÓĞÉè¶¨¶Ë¿Ú£¬ĞŞ¸ÄÎªÉè¶¨¶Ë¿Ú
+# å¦‚æœæœ‰è®¾å®šç«¯å£ï¼Œä¿®æ”¹ä¸ºè®¾å®šç«¯å£
 if [[ ${webPort} != "" ]]; then
-    echo "===================ÉèÖÃweb¶Ë¿ÚÎª£º${webPort}==================="
-    # ÔÙ´ÎÑéÖ¤¶Ë¿ÚºÅµÄÓĞĞ§ĞÔ
+    echo "===================è®¾ç½®webç«¯å£ä¸ºï¼š${webPort}==================="
+    # å†æ¬¡éªŒè¯ç«¯å£å·çš„æœ‰æ•ˆæ€§
     t=$(echo ${webPort}|sed 's/[0-9]//g')
     if [[ (${t} == "") && (${webPort} -ge 80) && (${webPort} -lt 65535) ]]; then
         if [[ ${productionMode} == "yes" ]]; then
             f="/home/${userName}/${installDir}/config/nginx.conf"
             if [[ -e ${f} ]]; then
-                echo "ÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}
+                echo "æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}
                 n=($(sed -n "/^[[:space:]]*listen/=" ${f}))
-                # ÈçÕÒµ½Ìæ»»Îª¿ÉÓÃÖ¸Áî
+                # å¦‚æ‰¾åˆ°æ›¿æ¢ä¸ºå¯ç”¨æŒ‡ä»¤
                 if [ ${n} ]; then
                     sed -i "${n} c listen ${webPort};" ${f}
                     sed -i "$((${n}+1)) c listen [::]:${webPort};" ${f}
                     /etc/init.d/nginx reload
-                    echo "web¶Ë¿ÚºÅĞŞ¸ÄÎª£º"${webPort}
+                    echo "webç«¯å£å·ä¿®æ”¹ä¸ºï¼š"${webPort}
                 else
-                    echo "ÅäÖÃÎÄ¼şÖĞÃ»ÕÒµ½ÉèÖÃĞĞ¡£ĞŞ¸ÄÊ§°Ü¡£"
-                    warnArr[${#warnArr[@]}]="ÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",Ã»ÕÒµ½ÉèÖÃĞĞ¡£ĞŞ¸ÄÊ§°Ü¡£"
+                    echo "é…ç½®æ–‡ä»¶ä¸­æ²¡æ‰¾åˆ°è®¾ç½®è¡Œã€‚ä¿®æ”¹å¤±è´¥ã€‚"
+                    warnArr[${#warnArr[@]}]="æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",æ²¡æ‰¾åˆ°è®¾ç½®è¡Œã€‚ä¿®æ”¹å¤±è´¥ã€‚"
                 fi
             else
-                echo "Ã»ÓĞÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",¶Ë¿ÚĞŞ¸ÄÊ§°Ü¡£"
-                warnArr[${#warnArr[@]}]="Ã»ÓĞÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",¶Ë¿ÚĞŞ¸ÄÊ§°Ü¡£"
+                echo "æ²¡æœ‰æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",ç«¯å£ä¿®æ”¹å¤±è´¥ã€‚"
+                warnArr[${#warnArr[@]}]="æ²¡æœ‰æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",ç«¯å£ä¿®æ”¹å¤±è´¥ã€‚"
             fi
         else
-            echo "¿ª·¢Ä£Ê½ĞŞ¸Ä¶Ë¿ÚºÅ"
+            echo "å¼€å‘æ¨¡å¼ä¿®æ”¹ç«¯å£å·"
             f="/home/${userName}/${installDir}/Procfile"
-            echo "ÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}
+            echo "æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}
             if [[ -e ${f} ]]; then
                 n=($(sed -n "/^web.*port.*/=" ${f}))
-                # ÈçÕÒµ½Ìæ»»Îª¿ÉÓÃÖ¸Áî
+                # å¦‚æ‰¾åˆ°æ›¿æ¢ä¸ºå¯ç”¨æŒ‡ä»¤
                 if [[ ${n} ]]; then
                     sed -i "${n} c web: bench serve --port ${webPort}" ${f}
                     su - ${userName} bash -c "cd ~/${installDir}; bench restart"
-                    echo "web¶Ë¿ÚºÅĞŞ¸ÄÎª£º"${webPort}
+                    echo "webç«¯å£å·ä¿®æ”¹ä¸ºï¼š"${webPort}
                 else
-                    echo "ÅäÖÃÎÄ¼şÖĞÃ»ÕÒµ½ÉèÖÃĞĞ¡£ĞŞ¸ÄÊ§°Ü¡£"
-                    warnArr[${#warnArr[@]}]="ÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",Ã»ÕÒµ½ÉèÖÃĞĞ¡£ĞŞ¸ÄÊ§°Ü¡£"
+                    echo "é…ç½®æ–‡ä»¶ä¸­æ²¡æ‰¾åˆ°è®¾ç½®è¡Œã€‚ä¿®æ”¹å¤±è´¥ã€‚"
+                    warnArr[${#warnArr[@]}]="æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",æ²¡æ‰¾åˆ°è®¾ç½®è¡Œã€‚ä¿®æ”¹å¤±è´¥ã€‚"
                 fi
             else
-                echo "Ã»ÓĞÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",¶Ë¿ÚĞŞ¸ÄÊ§°Ü¡£"
-                warnArr[${#warnArr[@]}]="Ã»ÓĞÕÒµ½ÅäÖÃÎÄ¼ş£º"${f}",¶Ë¿ÚĞŞ¸ÄÊ§°Ü¡£"
+                echo "æ²¡æœ‰æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",ç«¯å£ä¿®æ”¹å¤±è´¥ã€‚"
+                warnArr[${#warnArr[@]}]="æ²¡æœ‰æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼š"${f}",ç«¯å£ä¿®æ”¹å¤±è´¥ã€‚"
             fi
         fi
     else
-        echo "ÉèÖÃµÄ¶Ë¿ÚºÅÎŞĞ§»ò²»·ûºÏÒªÇó£¬È¡Ïû¶Ë¿ÚºÅĞŞ¸Ä¡£Ê¹ÓÃÄ¬ÈÏ¶Ë¿ÚºÅ¡£"
-        warnArr[${#warnArr[@]}]="ÉèÖÃµÄ¶Ë¿ÚºÅÎŞĞ§»ò²»·ûºÏÒªÇó£¬È¡Ïû¶Ë¿ÚºÅĞŞ¸Ä¡£Ê¹ÓÃÄ¬ÈÏ¶Ë¿ÚºÅ¡£"
+        echo "è®¾ç½®çš„ç«¯å£å·æ— æ•ˆæˆ–ä¸ç¬¦åˆè¦æ±‚ï¼Œå–æ¶ˆç«¯å£å·ä¿®æ”¹ã€‚ä½¿ç”¨é»˜è®¤ç«¯å£å·ã€‚"
+        warnArr[${#warnArr[@]}]="è®¾ç½®çš„ç«¯å£å·æ— æ•ˆæˆ–ä¸ç¬¦åˆè¦æ±‚ï¼Œå–æ¶ˆç«¯å£å·ä¿®æ”¹ã€‚ä½¿ç”¨é»˜è®¤ç«¯å£å·ã€‚"
     fi
 else
-    # Ã»ÓĞÉè¶¨¶Ë¿ÚºÅ£¬ÏÔÊ¾Ä¬ÈÏ¶Ë¿ÚºÅ¡£
+    # æ²¡æœ‰è®¾å®šç«¯å£å·ï¼Œæ˜¾ç¤ºé»˜è®¤ç«¯å£å·ã€‚
     if [[ ${productionMode} == "yes" ]]; then
         webPort="80"
     else
         webPort="8000"
     fi
 fi
-# ĞŞÕıÈ¨ÏŞ
-echo "===================ĞŞÕıÈ¨ÏŞ==================="
+# ä¿®æ­£æƒé™
+echo "===================ä¿®æ­£æƒé™==================="
 chown -R ${userName}:${userName} /home/${userName}/
 chmod 755 /home/${userName}
-# ÇåÀíÀ¬»ø,ERPNext°²×°Íê±Ï
-echo "===================ÇåÀíÀ¬»ø,ERPNext°²×°Íê±Ï==================="
+# æ¸…ç†åƒåœ¾,ERPNextå®‰è£…å®Œæ¯•
+echo "===================æ¸…ç†åƒåœ¾,ERPNextå®‰è£…å®Œæ¯•==================="
 apt clean
 apt autoremove -y
 rm -rf /var/lib/apt/lists/*
@@ -1067,39 +1067,39 @@ cd ~/${installDir}
 npm cache clean --force
 yarn cache clean
 EOF
-# È·ÈÏ°²×°
+# ç¡®è®¤å®‰è£…
 su - ${userName} <<EOF
 cd ~/${installDir}
-echo "===================È·ÈÏ°²×°==================="
+echo "===================ç¡®è®¤å®‰è£…==================="
 bench version
 EOF
-echo "===================Ö÷ÒªÔËĞĞ»·¾³==================="
+echo "===================ä¸»è¦è¿è¡Œç¯å¢ƒ==================="
 for i in "${rteArr[@]}"
 do
     echo ${i}
 done
 if [[ ${#warnArr[@]} != 0 ]]; then
-    echo "===================¾¯¸æ==================="
+    echo "===================è­¦å‘Š==================="
     for i in "${warnArr[@]}"
     do
         echo ${i}
     done
 fi
-echo "¹ÜÀíÔ±ÕËºÅ£ºadministrator£¬ÃÜÂë£º${adminPassword}¡£"
+echo "ç®¡ç†å‘˜è´¦å·ï¼šadministratorï¼Œå¯†ç ï¼š${adminPassword}ã€‚"
 if [[ ${productionMode} == "yes" ]]; then
     if [[ -e /etc/supervisor/conf.d/${installDir}.conf ]]; then
-        echo "ÒÑ¿ªÆôÉú²úÄ£Ê½¡£Ê¹ÓÃip»òÓòÃû·ÃÎÊÍøÕ¾¡£¼àÌı${webPort}¶Ë¿Ú¡£"
+        echo "å·²å¼€å¯ç”Ÿäº§æ¨¡å¼ã€‚ä½¿ç”¨ipæˆ–åŸŸåè®¿é—®ç½‘ç«™ã€‚ç›‘å¬${webPort}ç«¯å£ã€‚"
     else
-        echo "ÒÑÅäÖÃ¿ªÆôÉú²úÄ£Ê½¡£µ«supervisorÅäÖÃÎÄ¼şÉú³ÉÊ§°Ü£¬ÇëÅÅ³ı´íÎóºóÊÖ¶¯¿ªÆô¡£"
+        echo "å·²é…ç½®å¼€å¯ç”Ÿäº§æ¨¡å¼ã€‚ä½†supervisoré…ç½®æ–‡ä»¶ç”Ÿæˆå¤±è´¥ï¼Œè¯·æ’é™¤é”™è¯¯åæ‰‹åŠ¨å¼€å¯ã€‚"
     fi
 else
-    echo "Ê¹ÓÃsu - ${userName}×ªµ½${userName}ÓÃ»§½øÈë~/${installDir}Ä¿Â¼"
-    echo "ÔËĞĞbench startÆô¶¯ÏîÄ¿£¬Ê¹ÓÃip»òÓòÃû·ÃÎÊÍøÕ¾¡£¼àÌı${webPort}¶Ë¿Ú¡£"
+    echo "ä½¿ç”¨su - ${userName}è½¬åˆ°${userName}ç”¨æˆ·è¿›å…¥~/${installDir}ç›®å½•"
+    echo "è¿è¡Œbench startå¯åŠ¨é¡¹ç›®ï¼Œä½¿ç”¨ipæˆ–åŸŸåè®¿é—®ç½‘ç«™ã€‚ç›‘å¬${webPort}ç«¯å£ã€‚"
 fi
 if [[ ${inDocker} == "yes" ]]; then
-    echo "µ±Ç°supervisor×´Ì¬"
+    echo "å½“å‰supervisorçŠ¶æ€"
     /usr/bin/supervisorctl status
-    # echo "Í£Ö¹ËùÓĞ½ø³Ì¡£"
+    # echo "åœæ­¢æ‰€æœ‰è¿›ç¨‹ã€‚"
     # /usr/bin/supervisorctl stop all
 fi
 exit 0

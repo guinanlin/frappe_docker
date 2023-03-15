@@ -2,17 +2,17 @@
 FROM ubuntu:22.04
 LABEL author=guinan.lin
 
-# Éè¶¨²ÎÊı
+# è®¾å®šå‚æ•°
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
 
-# ¿½±´»ù´¡Èí¼ş°²×°½Å±¾
+# æ‹·è´åŸºç¡€è½¯ä»¶å®‰è£…è„šæœ¬
 COPY ./erpnext14/installdata /installdata
 
-# ÔËĞĞ»ù´¡Èí¼ş°²×°½Å±¾¡£
+# è¿è¡ŒåŸºç¡€è½¯ä»¶å®‰è£…è„šæœ¬ã€‚
 RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-ubuntu22.04.sh -qd"
 
-# ÇĞ»»ÓÃ»§
+# åˆ‡æ¢ç”¨æˆ·
 USER frappe
 WORKDIR /home/frappe/frappe-bench
 

@@ -41,9 +41,11 @@ adminPassword="admin"
 installDir="frappe-bench"
 userName="frappe"
 benchVersion=""
-frappePath="https://gitee.com/mirrors/frappe"
+frappePath="https://github.com/frappe/frappe"
+# frappePath="https://gitee.com/mirrors/frappe"
 frappeBranch="version-14"
-erpnextPath="https://gitee.com/mirrors/erpnext"
+erpnextPath="https://github.com/frappe/erpnext"
+# erpnextPath="https://gitee.com/mirrors/erpnext"
 erpnextBranch="version-14"
 siteName="site1.local"
 siteDbPassword="Pass1234"
@@ -884,7 +886,7 @@ su - ${userName} <<EOF
 cd ~/${installDir}
 echo "===================获取Payments应用==================="
 # bench get-app payments
-bench get-app https://gitee.com/phipsoft/payments
+bench get-app https://github.com/frappe/payments
 EOF
 # 建立新网站
 su - ${userName} <<EOF

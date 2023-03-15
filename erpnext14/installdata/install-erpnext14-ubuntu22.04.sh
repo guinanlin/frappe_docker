@@ -278,14 +278,26 @@ if [[ ${altAptSources} == "yes" ]];then
     fi
     rm -f /etc/apt/sources.list
     bash -c "cat << EOF > /etc/apt/sources.list && apt update 
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+#deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
 # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
 # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+#deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
 # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
 # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# deb http://archive.canonical.com/ubuntu/ jammy partner
+# deb-src http://archive.canonical.com/ubuntu/ jammy partner
+
 EOF"
     echo "===================apt已修改为国内源==================="
 fi

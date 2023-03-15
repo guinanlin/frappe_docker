@@ -73,5 +73,5 @@ jobs:
         if: ${{ inputs.push }}
         uses: docker/bake-action@v2.3.0
         with:
+	  context: .
           push: true
-          tags: goodhawk/erpnext:V14.18.3

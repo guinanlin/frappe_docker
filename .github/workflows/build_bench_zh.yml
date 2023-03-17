@@ -47,6 +47,8 @@ jobs:
         if: ${{ github.repository == 'guinanlin/frappe_docker' && github.event_name != 'pull_request' }}
         uses: docker/bake-action@v2.3.0
         with:
+	  context: .
           targets: bench
           push: true
-          set: "*.platform=linux/amd64,linux/arm64"
+	  no-cache: true
+          # set: "*.platform=linux/amd64,linux/arm64"

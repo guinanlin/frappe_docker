@@ -60,13 +60,13 @@ inDocker="no"
 # 是否删除重复文件
 removeDuplicate="yes"
 # 检测如果是云主机或已经是国内源则不修改apt安装源
-hostAddress=("mirrors.tencentyun.com" "mirrors.tuna.tsinghua.edu.cn" "cn.archive.ubuntu.com")
-for h in ${hostAddress[@]}; do
-    n=$(cat /etc/apt/sources.list | grep -c ${h} || true)
-    if [[ ${n} -gt 0 ]]; then
-        altAptSources="no"
-    fi
-done
+# hostAddress=("mirrors.tencentyun.com" "mirrors.tuna.tsinghua.edu.cn" "cn.archive.ubuntu.com")
+# for h in ${hostAddress[@]}; do
+#     n=$(cat /etc/apt/sources.list | grep -c ${h} || true)
+#     if [[ ${n} -gt 0 ]]; then
+#         altAptSources="no"
+#     fi
+# done
 # 遍历参数修改默认值
 # 脚本后添加参数如有冲突，靠后的参数生效。
 echo "===================获取参数==================="
@@ -589,12 +589,12 @@ fi
 # 修改pip默认源加速国内安装
 # 在执行前确定有操作权限
 # pip3 config list
-mkdir -p /root/.pip
-echo '[global]' > /root/.pip/pip.conf
-echo 'index-url=https://pypi.tuna.tsinghua.edu.cn/simple' >> /root/.pip/pip.conf
-echo '[install]' >> /root/.pip/pip.conf
-echo 'trusted-host=mirrors.tuna.tsinghua.edu.cn' >> /root/.pip/pip.conf
-echo "===================pip已修改为国内源==================="
+# mkdir -p /root/.pip
+# echo '[global]' > /root/.pip/pip.conf
+# echo 'index-url=https://pypi.tuna.tsinghua.edu.cn/simple' >> /root/.pip/pip.conf
+# echo '[install]' >> /root/.pip/pip.conf
+# echo 'trusted-host=mirrors.tuna.tsinghua.edu.cn' >> /root/.pip/pip.conf
+# echo "===================pip已修改为国内源==================="
 # 安装并升级pip及工具包
 echo "===================安装并升级pip及工具包==================="
 cd ~

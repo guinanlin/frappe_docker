@@ -14,7 +14,7 @@ jobs:
     outputs:
       tags: ${{ steps.set-output-id.outputs.tags }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.1
       - name: set-output
         id: set-output-id
         run: |

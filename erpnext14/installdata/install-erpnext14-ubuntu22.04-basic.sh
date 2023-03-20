@@ -588,13 +588,13 @@ else
 fi
 # 修改pip默认源加速国内安装
 # 在执行前确定有操作权限
-# pip3 config list
-# mkdir -p /root/.pip
-# echo '[global]' > /root/.pip/pip.conf
-# echo 'index-url=https://pypi.tuna.tsinghua.edu.cn/simple' >> /root/.pip/pip.conf
-# echo '[install]' >> /root/.pip/pip.conf
-# echo 'trusted-host=mirrors.tuna.tsinghua.edu.cn' >> /root/.pip/pip.conf
-# echo "===================pip已修改为国内源==================="
+pip3 config list
+mkdir -p /root/.pip
+echo '[global]' > /root/.pip/pip.conf
+echo 'index-url=https://pypi.org/simple/' >> /root/.pip/pip.conf
+echo '[install]' >> /root/.pip/pip.conf
+echo 'trusted-host=pypi.org' >> /root/.pip/pip.conf
+echo "===================pip已修改为官方源==================="
 # 安装并升级pip及工具包
 echo "===================安装并升级pip及工具包==================="
 cd ~

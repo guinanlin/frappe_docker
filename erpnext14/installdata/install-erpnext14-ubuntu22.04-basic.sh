@@ -322,6 +322,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     software-properties-common \
     mariadb-server \
     mariadb-client \
+    openssh-server \
     libmysqlclient-dev \
     xvfb \
     libfontconfig \

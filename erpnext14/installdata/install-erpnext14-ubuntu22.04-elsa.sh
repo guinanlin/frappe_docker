@@ -271,36 +271,37 @@ fi
 
 # 开始安装基础软件，并求改配置使其符合要求
 # 修改安装源加速国内安装。
-if [[ ${altAptSources} == "yes" ]];then
-    # 在执行前确定有操作权限
-    if [[ ! -e /etc/apt/sources.list.bak ]]; then
-        cp /etc/apt/sources.list /etc/apt/sources.list.bak
-    fi
-    rm -f /etc/apt/sources.list
-    bash -c "cat << EOF > /etc/apt/sources.list && apt update 
-#deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
-# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
-# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-#deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
-# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# if [[ ${altAptSources} == "yes" ]];then
+#     # 在执行前确定有操作权限
+#     if [[ ! -e /etc/apt/sources.list.bak ]]; then
+#         cp /etc/apt/sources.list /etc/apt/sources.list.bak
+#     fi
+#     rm -f /etc/apt/sources.list
+#     bash -c "cat << EOF > /etc/apt/sources.list && apt update 
+# #deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# # deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# #deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+# # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+# # deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# # deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# 
+# deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# # deb-src http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# deb http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# # deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# deb http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# # deb-src http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# deb http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# # deb-src http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# # deb http://archive.canonical.com/ubuntu/ jammy partner
+# # deb-src http://archive.canonical.com/ubuntu/ jammy partner
+# 
+# EOF"
+#     echo "===================apt已修改为国内源==================="
+# fi
 
-deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
-# deb http://archive.canonical.com/ubuntu/ jammy partner
-# deb-src http://archive.canonical.com/ubuntu/ jammy partner
-
-EOF"
-    echo "===================apt已修改为国内源==================="
-fi
 # 安装基础软件
 echo "===================安装基础软件==================="
 apt update

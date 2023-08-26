@@ -310,7 +310,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     sudo \
     locales \
     tzdata \
-    cron \   
+    cron \
     wget \
     curl \
     python3.10-dev \

@@ -679,16 +679,16 @@ sed -i "/^fs.inotify.max_user_watches=.*/d" /etc/sysctl.conf
 echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
 # 使其立即生效
 /sbin/sysctl -p
-# 检查是否安装nodejs16
+# 检查是否安装nodejs18
 source /etc/profile
 if ! type node >/dev/null 2>&1; then
-    # 获取最新版nodejs-v16，并安装
-    echo "==========获取最新版nodejs-v16，并安装=========="
-    nodejs0=$(curl -sL https://nodejs.org/download/release/latest-v16.x/ | grep -o node-v16.*-linux-x64.tar.xz)
+    # 获取最新版nodejs-v18，并安装
+    echo "==========获取最新版nodejs-v18，并安装=========="
+    nodejs0=$(curl -sL https://nodejs.org/download/release/latest-v18.x/ | grep -o node-v18.*-linux-x64.tar.xz)
     nodejs1=${nodejs0%%.tar*}
-    echo "nodejs16最新版本为：${nodejs1}"
-    echo "即将安装nodejs16到/usr/local/lib/nodejs/${nodejs1}"
-    wget https://nodejs.org/download/release/latest-v16.x/${nodejs1}.tar.xz -P /tmp/
+    echo "nodejs18最新版本为：${nodejs1}"
+    echo "即将安装nodejs18到/usr/local/lib/nodejs/${nodejs1}"
+    wget https://nodejs.org/download/release/latest-v18.x/${nodejs1}.tar.xz -P /tmp/
     mkdir -p /usr/local/lib/nodejs
     tar -xJf /tmp/${nodejs1}.tar.xz -C /usr/local/lib/nodejs/
     echo "export PATH=/usr/local/lib/nodejs/${nodejs1}/bin:\$PATH" >> /etc/profile.d/nodejs.sh
@@ -698,13 +698,13 @@ if ! type node >/dev/null 2>&1; then
 fi
 # 环境需求检查,node
 if type node >/dev/null 2>&1; then
-    result=$(node -v | grep "v16." || true)
+    result=$(node -v | grep "v18." || true)
     if [[ ${result} == "" ]]
     then
-        echo '==========已存在node，但不是v16版。这将有可能导致一些问题。建议卸载node后重试。=========='
-        warnArr[${#warnArr[@]}]='node不是推荐的v16版本。'
+        echo '==========已存在node，但不是v18版。这将有可能导致一些问题。建议卸载node后重试。=========='
+        warnArr[${#warnArr[@]}]='node不是推荐的v18版本。'
     else
-        echo '==========已安装node16=========='
+        echo '==========已安装node18=========='
     fi
     rteArr[${#rteArr[@]}]='node '$(node -v)
 else

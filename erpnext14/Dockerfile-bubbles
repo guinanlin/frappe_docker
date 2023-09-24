@@ -5,7 +5,6 @@ LABEL author=guinan.lin
 # 设定参数
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
-ARG GHTOKEN
 
 # 拷贝基础软件安装脚本
 COPY ./erpnext14/installdata /installdata

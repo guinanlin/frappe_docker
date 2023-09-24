@@ -6,6 +6,10 @@ LABEL author=guinan.lin
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
 
+# mount授权token
+RUN --mount=type=secret,id=GIT_AUTH_TOKEN \
+  cat /run/secrets/github_token
+
 # 拷贝基础软件安装脚本
 COPY ./erpnext14/installdata /installdata
 

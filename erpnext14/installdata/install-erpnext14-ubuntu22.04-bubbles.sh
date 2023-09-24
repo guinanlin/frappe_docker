@@ -333,8 +333,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     libmysqlclient-dev \
     xvfb \
     libfontconfig \
-    wkhtmltopdf \
-    fonts-wqy-zenhei \    
+    wkhtmltopdf \  
     supervisor
 # 环境需求检查
 rteArr=()
@@ -407,6 +406,8 @@ if type wkhtmltopdf >/dev/null 2>&1; then
     else
         echo '==========已安装wkhtmltox_0.12.6=========='
         strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+        apt update
+        apt install -y  ttf-wqy-zenhei        
         echo '==========解决pdf导出异常=========='              
     fi
     rteArr[${#rteArr[@]}]=$(wkhtmltopdf -V)

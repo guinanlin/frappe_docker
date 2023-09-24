@@ -21,7 +21,7 @@ jobs:
         git config --global credential.helper store
 
         # 使用访问令牌来访问私有仓库
-        git clone git@github.com:guinanlin/erpnextcn.git
+        git clone https://github.com/guinanlin/erpnextcn.git
 
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}

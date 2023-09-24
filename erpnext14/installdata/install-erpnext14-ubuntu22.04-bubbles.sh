@@ -898,13 +898,13 @@ echo "===================获取erpnext应用==================="
 bench get-app ${erpnextBranch} ${erpnextPath}
 # cd ~/${installDir} && ./env/bin/pip3 install -e apps/erpnext/
 EOF
-# 获取ERPNextCN应用
-su - ${userName} <<EOF
-cd ~/${installDir}
-echo "===================获取ERPNextCN应用==================="
-# bench get-app erpnextcn
-bench get-app https://github.com/guinanlin/erpnextcn.git
-EOF
+# # 获取ERPNextCN应用
+# su - ${userName} <<EOF
+# cd ~/${installDir}
+# echo "===================获取ERPNextCN应用==================="
+# # bench get-app erpnextcn
+# bench get-app https://github.com/guinanlin/erpnextcn.git
+# EOF
 # 获取Payments应用
 # su - ${userName} <<EOF
 # cd ~/${installDir}
@@ -924,7 +924,7 @@ cd ~/${installDir}
 echo "===================安装erpnext应用到新网站==================="
 # bench --site ${siteName} install-app payments
 bench --site ${siteName} install-app erpnext
-bench --site ${siteName} install-app erpnextcn
+# bench --site ${siteName} install-app erpnextcn
 EOF
 # 站点配置
 su - ${userName} <<EOF

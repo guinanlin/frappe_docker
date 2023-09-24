@@ -312,6 +312,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     tzdata \
     cron \
     wget \
+    vim \
     curl \
     python3.10-dev \
     python3.10-venv \
@@ -327,8 +328,6 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     xvfb \
     libfontconfig \
     wkhtmltopdf \
-    ttf-wqy-zenhei \
-    ttf-wqy-microhei \    
     supervisor
 # 环境需求检查
 rteArr=()
@@ -400,8 +399,6 @@ if type wkhtmltopdf >/dev/null 2>&1; then
         warnArr[${#warnArr[@]}]='wkhtmltox不是推荐的0.12.6版本。'
     else
         echo '==========已安装wkhtmltox_0.12.6=========='
-        strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
-        echo '==========解决pdf导出异常=========='           
     fi
     rteArr[${#rteArr[@]}]=$(wkhtmltopdf -V)
 else

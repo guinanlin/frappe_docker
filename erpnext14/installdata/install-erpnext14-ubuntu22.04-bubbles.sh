@@ -333,8 +333,11 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     libmysqlclient-dev \
     xvfb \
     libfontconfig \
-    wkhtmltopdf \  
+    wkhtmltopdf \
+    ttf-wqy-zenhei \
+    ttf-wqy-microhei \
     supervisor
+    
 # 环境需求检查
 rteArr=()
 warnArr=()
@@ -413,7 +416,7 @@ else
     echo "==========wkhtmltox安装失败退出脚本！=========="
     exit 1
 fi
-# 环境需求检查,MariaDB
+# 环境需求检查,MariaDB 
 # https://mirrors.aliyun.com/mariadb/mariadb-10.6.8/bintar-linux-systemd-x86_64/mariadb-10.6.8-linux-systemd-x86_64.tar.gz
 if type mysql >/dev/null 2>&1; then
     result=$(mysql -V | grep "10.6" || true)

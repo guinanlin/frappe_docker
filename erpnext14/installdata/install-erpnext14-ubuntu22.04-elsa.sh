@@ -718,7 +718,7 @@ npm config set registry https://registry.npmmirror.com -g
 echo "===================npm已修改为国内源==================="
 # 升级npm
 echo "===================升级npm==================="
-npm install -g npm
+npm install -g npm@8
 # 安装yarn
 echo "===================安装yarn==================="
 npm install -g yarn

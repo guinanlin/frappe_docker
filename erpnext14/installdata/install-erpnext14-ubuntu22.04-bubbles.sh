@@ -717,7 +717,7 @@ npm config set registry https://registry.npmmirror.com -g
 echo "===================npm已修改为国内源==================="
 # 升级npm
 echo "===================升级npm==================="
-npm install -g npm
+npm install -g npm@8
 # 安装yarn
 echo "===================安装yarn==================="
 npm install -g yarn
@@ -1069,6 +1069,13 @@ fi
 echo "===================修正权限==================="
 chown -R ${userName}:${userName} /home/${userName}/
 chmod 755 /home/${userName}
+# # 初始化中国会计科目
+su - ${userName} <<EOF
+cd ~/${installDir}/apps/erpnext/erpnext/accounts/doctype/account/chart_of_accounts/verified
+echo "===================初始化中国会计科目==================="
+wget -O cn_accounting_standards_for_business_enterprises.json https://gist.githubusercontent.com/guinanlin/e5a5b2e278e4dfc484686ea648f46cb7/raw/cn_accounting_standards_for_business_enterprises.json
+wget -O cn_saas_chart_of_accounts.json https://gist.githubusercontent.com/guinanlin/eb8cd7534efad3234ffcdcf34b71004e/raw/cn_saas_chart_of_accounts.json
+EOF
 # 清理垃圾,ERPNext安装完毕
 echo "===================清理垃圾,ERPNext安装完毕==================="
 apt clean

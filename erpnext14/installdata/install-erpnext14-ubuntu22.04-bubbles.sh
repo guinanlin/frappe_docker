@@ -42,8 +42,8 @@ fi
 # 也可以直接修改下列变量
 mariadbPath=""
 mariadbPort="3306"
-mariadbRootPassword= $MARIADB_ROOT_PASSWORD
-adminPassword= $ADMIN_PASSWORD
+mariadbRootPassword="Pass1234"
+adminPassword="admin"
 installDir="frappe-bench"
 userName="frappe"
 benchVersion=""

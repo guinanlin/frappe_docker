@@ -10,7 +10,7 @@ ENV ADMIN_PASSWORD=admin
 COPY ./erpnext14/installdata /installdata
 
 # 运行基础软件安装脚本。
-RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-ubuntu22.04-bubbles -qd"
+RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-ubuntu22.04-bubbles.sh -qd"
 
 # 切换用户
 USER frappe

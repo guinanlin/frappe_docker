@@ -7,24 +7,6 @@ on:
 env:
   IMAGE_NAME: erpnext14 #这是您的镜像名
 jobs:
-  get-private-git:
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Use GitHub Token
-      run: |
-        # 使用 GH_TOKEN 环境变量来设置 git 的身份验证信息
-        git config --global user.email "guinan.lin@foxmail.com"
-        git config --global user.name "guinanlin"
-        git config --global credential.helper store
-
-        # 使用访问令牌来访问私有仓库
-        git clone https://github.com/guinanlin/erpnextcn.git
-
-    env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
   get-tags:
     runs-on: ubuntu-20.04
     env:

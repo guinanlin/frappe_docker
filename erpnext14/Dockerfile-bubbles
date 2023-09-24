@@ -8,7 +8,9 @@ ENV ADMIN_PASSWORD=admin
 
 # mount授权token
 RUN --mount=type=secret,id=GIT_AUTH_TOKEN \
-  cat /run/secrets/GIT_AUTH_TOKEN
+  export GIT_AUTH_TOKEN=$(cat /run/secrets/GIT_AUTH_TOKEN)
+  
+# cat /run/secrets/GIT_AUTH_TOKEN
 
 # 拷贝基础软件安装脚本
 COPY ./erpnext14/installdata /installdata

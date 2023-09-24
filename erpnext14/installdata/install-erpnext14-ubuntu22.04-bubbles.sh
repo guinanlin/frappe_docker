@@ -907,12 +907,12 @@ bench get-app ${erpnextBranch} ${erpnextPath}
 # cd ~/${installDir} && ./env/bin/pip3 install -e apps/erpnext/
 EOF
 # 获取ERPNextCN应用
-# su - ${userName} <<EOF
-# cd ~/${installDir}
-# echo "===================获取ERPNextCN应用==================="
-# # bench get-app erpnextcn
-# bench get-app https://github.com/guinanlin/erpnextcn.git
-# EOF
+su - ${userName} <<EOF
+cd ~/${installDir}
+echo "===================获取ERPNextCN应用==================="
+# bench get-app erpnextcn
+bench get-app https://$GIT_AUTH_TOKEN@github.com/guinanlin/erpnextcn.git
+EOF
 # 获取Payments应用
 # su - ${userName} <<EOF
 # cd ~/${installDir}

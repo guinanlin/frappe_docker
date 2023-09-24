@@ -328,8 +328,6 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
     xvfb \
     libfontconfig \
     wkhtmltopdf \
-    ttf-wqy-zenhei \
-    ttf-wqy-microhei \    
     supervisor
 # 环境需求检查
 rteArr=()

@@ -29,6 +29,8 @@ fi
 
 # 打印私有仓库访问token
 echo "Access Token is: $GHTOKEN"
+echo "数据库密码是 is: $MARIADB_ROOT_PASSWORD"
+exit 1
 
 # 设定参数默认值，如果你不知道干嘛的就别改。
 # 只适用于纯净版ubuntu22.04并使用root用户运行，其他系统请自行重新适配。

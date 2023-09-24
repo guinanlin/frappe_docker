@@ -26,6 +26,10 @@ if [ "$(id -u)" != "0" ]; then
 else
     echo '执行用户检测通过...'
 fi
+
+# 打印私有仓库访问token
+echo "Access Token is: $GHTOKEN"
+
 # 设定参数默认值，如果你不知道干嘛的就别改。
 # 只适用于纯净版ubuntu22.04并使用root用户运行，其他系统请自行重新适配。
 # 会安装python3.10，mariadb，redis以及erpnext的其他系统需求。

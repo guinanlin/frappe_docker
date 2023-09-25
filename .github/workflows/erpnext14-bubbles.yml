@@ -1,6 +1,6 @@
 name: ERPNext14-bubbles
 on:
-  workflow_dispatch: #github页面手动触发
+  workflow_dispatch: #github页面手动触1发
   push:
     tags:
       - "v*.*"
@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build && Push
-        uses: docker/build-push-action@v2    
+        uses: docker/build-push-action@v5    
         with:
           context: .
           file: ./erpnext14/Dockerfile-bubbles

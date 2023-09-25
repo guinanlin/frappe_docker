@@ -20,7 +20,7 @@ jobs:
         id: set-output-id-2
         run: |
           VERSION=bubbles
-          echo "版本号：${{ secrets.GH_TOKEN }}"  
+          echo "版本号：${{ secrets.GIT_AUTH_TOKEN }}"  
       - name: 克隆私有仓库代码
         id: set-output-id-3
         run: |
@@ -31,6 +31,11 @@ jobs:
           # 获取当前时间
           CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
           
-          # 将克隆目录和完成时间存储在 Environment Files 中
-          echo "CLONE_DIR=$CLONE_DIR" >> $GITHUB_ENV
-          echo "COMPLETION_TIME=$CURRENT_TIME" >> $GITHUB_ENV                                    
+          # 输出克隆目录和完成时间到工作流程日志
+          echo "克隆目录: $CLONE_DIR"
+          echo "完成时间: $CURRENT_TIME"                                  
+      - name: 执行shell脚本
+        id: set-output-id-4
+        run: |
+          chmod +x .github/scripts/custom.sh
+          .github/scripts/custom.sh          

@@ -37,5 +37,5 @@ jobs:
       - name: 执行shell脚本
         id: set-output-id-4
         run: |
-          chmod +x .github/scripts/custom.sh
-          .github/scripts/custom.sh          
+          chmod +x ./.github/scripts/custom.sh
+          ./.github/scripts/custom.sh          

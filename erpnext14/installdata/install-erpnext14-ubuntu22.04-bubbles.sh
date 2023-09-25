@@ -40,6 +40,7 @@ fi
 # 静默模式会默认删除已存在的安装目录和当前设置站点重名的数据库及用户。请谨慎使用。
 # branch参数会同时修改frappe和erpnext的分支。
 # 也可以直接修改下列变量
+gitAuth=${GIT_AUTH_TOKEN}
 mariadbPath=""
 mariadbPort="3306"
 mariadbRootPassword="Pass1234"
@@ -911,7 +912,7 @@ su - ${userName} <<EOF
 cd ~/${installDir}
 echo "===================获取ERPNextCN应用==================="
 # bench get-app erpnextcn
-bench get-app https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+bench get-app https://guinanlin:${gitAuth}@github.com/guinanlin/erpnextcn.git
 EOF
 # 获取Payments应用
 # su - ${userName} <<EOF

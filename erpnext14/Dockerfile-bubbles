@@ -6,6 +6,12 @@ LABEL author=guinan.lin
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
 
+# 定义构建参数 ARG
+ARG GIT_AUTH_TOKEN_INNER
+
+# 在 Dockerfile 中使用构建参数
+ENV GIT_AUTH_TOKEN_INNER=$GIT_AUTH_TOKEN
+
 # ENV GIT_AUTH_TOKEN= $GIT_AUTH_TOKEN
 
 # mount授权token
@@ -27,7 +33,7 @@ RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-
 USER frappe
 WORKDIR /home/frappe/frappe-bench
 
-ENV ERPNEXTCN_PATH=https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+ENV ERPNEXTCN_PATH=https://guinanlin:${GIT_AUTH_TOKEN_INNER}@github.com/guinanlin/erpnextcn.git
 ENV SITE_ANME=site1.local
 
 # 安装中国本地化软件

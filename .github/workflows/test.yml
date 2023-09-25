@@ -20,4 +20,17 @@ jobs:
         id: set-output-id-2
         run: |
           VERSION=bubbles
-          echo "版本号：${{ secrets.GH_TOKEN }}"                       
+          echo "版本号：${{ secrets.GH_TOKEN }}"  
+      - name: 克隆私有仓库代码
+        id: set-output-id-3
+        run: |
+          # 设置克隆目录
+          CLONE_DIR="erpnextcn"
+          git clone https://guinanlin:${{ secrets.GH_TOKEN }}@github.com/guinanlin/erpnextcn.git $CLONE_DIR
+          
+          # 获取当前时间
+          CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
+          
+          # 输出克隆目录和完成时间到工作流程的输出
+          echo "::set-output name=clone-dir::$CLONE_DIR"
+          echo "::set-output name=completion-time::$CURRENT_TIME"                                        

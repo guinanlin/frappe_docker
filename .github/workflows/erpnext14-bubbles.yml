@@ -36,12 +36,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build && Push
-        uses: docker/build-push-action@v5    
+        uses: docker/build-push-action@v5
+        env:
+          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}            
         with:
           context: .
-          file: ./erpnext14/Dockerfile-bubbles
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.GH_TOKEN }}          
+          file: ./erpnext14/Dockerfile-bubbles         
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.get-tags.outputs.tags }}

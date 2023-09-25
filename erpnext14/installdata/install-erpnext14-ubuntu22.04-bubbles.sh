@@ -40,7 +40,7 @@ fi
 # 静默模式会默认删除已存在的安装目录和当前设置站点重名的数据库及用户。请谨慎使用。
 # branch参数会同时修改frappe和erpnext的分支。
 # 也可以直接修改下列变量
-gitAuth=${GIT_AUTH_TOKEN}
+gitAuth=
 mariadbPath=""
 mariadbPort="3306"
 mariadbRootPassword="Pass1234"
@@ -53,6 +53,7 @@ frappePath="https://github.com/frappe/frappe"
 frappeBranch="version-14"
 erpnextPath="https://github.com/frappe/erpnext"
 # erpnextPath="https://gitee.com/mirrors/erpnext"
+erpnextcnPath=https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
 erpnextBranch="version-14"
 siteName="site1.local"
 siteDbPassword="Pass1234"
@@ -147,6 +148,10 @@ do
             erpnextPath=${arg1}
             echo "设置erpnext拉取地址为： ${erpnextPath}"
             ;;
+        "erpnextcnPath")
+            erpnextcnPath=${arg1}
+            echo "设置erpnextcn拉取地址为： ${erpnextcnPath}"
+            ;;            
         "erpnextBranch")
             erpnextBranch=${arg1}
             echo "设置erpnext分支为： ${erpnextBranch}"
@@ -212,6 +217,7 @@ echo "指定bench版本："${benchVersion}
 echo "拉取frappe地址："${frappePath}
 echo "指定frappe版本："${frappeBranch}
 echo "拉取erpnext地址："${erpnextPath}
+echo "拉取erpnextcn地址："${erpnextcnPath}
 echo "指定erpnext版本："${erpnextBranch}
 echo "网站名称："${siteName}
 echo "网站数据库密码："${siteDbPassword}
@@ -912,7 +918,7 @@ su - ${userName} <<EOF
 cd ~/${installDir}
 echo "===================获取ERPNextCN应用==================="
 # bench get-app erpnextcn
-bench get-app https://guinanlin:${gitAuth}@github.com/guinanlin/erpnextcn.git
+bench get-app ${erpnextcnPath}
 EOF
 # 获取Payments应用
 # su - ${userName} <<EOF

@@ -31,6 +31,6 @@ jobs:
           # 获取当前时间
           CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
           
-          # 输出克隆目录和完成时间到工作流程的输出
-          echo "::set-output name=clone-dir::$CLONE_DIR"
-          echo "::set-output name=completion-time::$CURRENT_TIME"                                        
+          # 将克隆目录和完成时间存储在 Environment Files 中
+          echo "CLONE_DIR=$CLONE_DIR" >> $GITHUB_ENV
+          echo "COMPLETION_TIME=$CURRENT_TIME" >> $GITHUB_ENV                                    

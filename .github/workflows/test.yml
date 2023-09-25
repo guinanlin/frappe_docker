@@ -14,10 +14,10 @@ jobs:
         id: set-output-id
         run: |
           VERSION=bubbles
-          echo "版本号：${{ env.TZ }}"            
+          echo "时区：${{ env.TZ }}"            
           echo "版本号：${{ env.DOCKER_IMAGE_NAME }}"     
       - name: 读取密钥
         id: set-output-id-2
         run: |
           VERSION=bubbles
-          echo "版本号：${{ secrects.GH_TOKEN }}"                       
+          echo "版本号：${{ secrets.GH_TOKEN }}"                       

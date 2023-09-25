@@ -10,9 +10,14 @@ jobs:
     outputs:
       tags: ${{ steps.set-output-id.outputs.tags }}
     steps:
-      - name: set-output
+      - name: 读取变量
         id: set-output-id
         run: |
           VERSION=bubbles
           echo "版本号：${{ env.TZ }}"            
           echo "版本号：${{ env.DOCKER_IMAGE_NAME }}"     
+      - name: 读取密钥
+        id: set-output-id-2
+        run: |
+          VERSION=bubbles
+          echo "版本号：${{ secrects.GH_TOKEN }}"                       

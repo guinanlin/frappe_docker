@@ -911,7 +911,8 @@ su - ${userName} <<EOF
 cd ~/${installDir}
 echo "===================获取ERPNextCN应用==================="
 # bench get-app erpnextcn
-bench get-app https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+# bench get-app https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+bench get-app https://guinanlin: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@github.com/guinanlin/erpnextcn.git
 EOF
 # 获取Payments应用
 # su - ${userName} <<EOF
@@ -932,6 +933,7 @@ cd ~/${installDir}
 echo "===================安装erpnext应用到新网站==================="
 # bench --site ${siteName} install-app payments
 bench --site ${siteName} install-app erpnext
+bench --site ${siteName} install-app erpnextcn
 EOF
 # 站点配置
 su - ${userName} <<EOF

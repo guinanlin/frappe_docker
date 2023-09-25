@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       TZ: Asia/Shanghai
+      GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}      
     steps:
       - uses: actions/checkout@v2
       - name: Login
@@ -36,9 +37,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build && Push
-        uses: docker/build-push-action@v5
-        env:
-          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}            
+        uses: docker/build-push-action@v5  
         with:
           context: .
           file: ./erpnext14/Dockerfile-bubbles         

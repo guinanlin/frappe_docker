@@ -6,12 +6,6 @@ LABEL author=guinan.lin
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
 
-# 定义构建参数 ARG
-ARG GIT_AUTH_TOKEN_INNER
-
-# 在 Dockerfile 中使用构建参数
-ENV GIT_AUTH_TOKEN_INNER=$GIT_AUTH_TOKEN
-
 # ENV GIT_AUTH_TOKEN= $GIT_AUTH_TOKEN
 
 # mount授权token
@@ -25,6 +19,11 @@ ENV GIT_AUTH_TOKEN_INNER=$GIT_AUTH_TOKEN
 
 # 拷贝基础软件安装脚本
 COPY ./erpnext14/installdata /installdata
+
+# 定义构建参数 ARG
+ARG GIT_AUTH_TOKEN
+# 在 Dockerfile 中使用构建参数
+ENV GIT_AUTH_TOKEN $GIT_AUTH_TOKEN
 
 # 运行基础软件安装脚本。
 RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-ubuntu22.04-bubbles.sh -qd"

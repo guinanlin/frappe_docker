@@ -14,4 +14,4 @@ jobs:
         id: set-output-id
         run: |
           VERSION=bubbles
-          echo "版本号：{{ var.APP_ID }}"     
+          echo "版本号：${{ var.APP_ID }}"     

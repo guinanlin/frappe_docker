@@ -34,6 +34,7 @@ jobs:
           # 输出克隆目录和完成时间到工作流程日志
           echo "克隆目录: $CLONE_DIR"
           echo "完成时间: $CURRENT_TIME"                                  
+      - uses: actions/checkout@v2
       - name: 执行shell脚本
         id: set-output-id-4
         run: |

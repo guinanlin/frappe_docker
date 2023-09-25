@@ -5,15 +5,15 @@ LABEL author=guinan.lin
 # 设定参数
 ENV MARIADB_ROOT_PASSWORD=Pass1234
 ENV ADMIN_PASSWORD=admin
-ENV SITE_ANME=site1.local
+
 # ENV GIT_AUTH_TOKEN= $GIT_AUTH_TOKEN
 
 # mount授权token
 # RUN --mount=type=secret,id=GIT_AUTH_TOKEN \
 #   export GIT_AUTH_TOKEN=$(cat /run/secrets/GIT_AUTH_TOKEN)
 
-ENV GIT_AUTH_TOKEN=${GIT_AUTH_TOKEN}
-ENV ERPNEXTCN_PATH=https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+# ENV GIT_AUTH_TOKEN=${GIT_AUTH_TOKEN}
+
 
 # cat /run/secrets/GIT_AUTH_TOKEN
 
@@ -26,6 +26,9 @@ RUN /bin/bash -c "chmod -R 777 /installdata/* && /installdata/install-erpnext14-
 # 切换用户
 USER frappe
 WORKDIR /home/frappe/frappe-bench
+
+ENV ERPNEXTCN_PATH=https://guinanlin:${GIT_AUTH_TOKEN}@github.com/guinanlin/erpnextcn.git
+ENV SITE_ANME=site1.local
 
 # 安装中国本地化软件
 RUN bench get-app ${ERPNEXTCN_PATH}

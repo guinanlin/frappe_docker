@@ -993,7 +993,9 @@ if [[ ${productionMode} == "yes" ]]; then
         set +e
         su - ${userName} <<EOF
         cd ~/${installDir}
-        sudo bench setup production ${userName} --yes
+        # 对生产环境进行build
+        subo bench build --apps frappe,erpnext 
+        sudo bench setup production ${userName} --yes       
 EOF
         set -e
         i=$((${i} + 1))
